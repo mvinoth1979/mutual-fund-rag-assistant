@@ -18,65 +18,19 @@ class NormalizedQuery(BaseModel):
 
 class QueryNormalizer:
     """
-    Rule-based query normalizer using fixed dictionaries.
+    Rule-based query normalizer using fuzzy logic dictionary.
     """
-
-    # Longest-first to avoid partial replacements
-    ABBREVIATIONS = {
-        "systematic investment plan": "sip",
-        "net asset value": "nav",
-        "assets under management": "aum",
-        "long term capital gains": "ltcg",
-        "short term capital gains": "stcg",
-        "exchange traded fund": "etf",
-        "fund of funds": "fof",
-    }
-
-    SYNONYMS = {
-        "charges": "expense ratio",
-        "fees": "expense ratio",
-        "cost": "expense ratio",
-        "expenses": "expense ratio",
-        "redemption fee": "exit load",
-        "exit charge": "exit load",
-        "redemption charge": "exit load",
-        "minimum sip": "min sip",
-        "sip amount": "min sip",
-        "minimum lumpsum": "min lumpsum",
-        "lumpsum amount": "min lumpsum",
-        "launch date": "inception date",
-        "started on": "inception date",
-        "risk level": "riskometer",
-        "risk": "riskometer",
-    }
-
-    FUND_ALIASES = {
-        "smallcap": "small cap fund",
-        "small cap": "small cap fund",
-        "ethical": "ethical fund",
-        "multi asset allocation": "multi asset allocation fund",
-        "multi asset": "multi asset allocation fund",
-        "flexicap": "flexi cap fund",
-        "flexi cap": "flexi cap fund",
-        "liquid": "liquid fund",
-        "gold etf fof": "gold etf fof",
-        "gold etf": "gold etf fof",
-        "gold": "gold etf fof",
-        "arbitrage": "arbitrage fund",
-    }
-
-    # Combine all replacement dictionaries (longest phrase first)
+    
+    # Load fuzzy mapping from external file
+    try:
+        from .fuzzy_dictionary import FUZZY_MAPPING
+    except ImportError:
+        from fuzzy_dictionary import FUZZY_MAPPING
+    
     @classmethod
-    def _build_replacement_patterns(cls) -> list[tuple[str, str]]:
-        combined = {}
-        # Note: abbreviations are expanded in reverse (acronym -> full form)
-        # But we want to EXPAND acronyms, so we map acronym -> full form
-        abbrev_expanded = {v: k for k, v in cls.ABBREVIATIONS.items()}
-        combined.update(abbrev_expanded)
-        combined.update(cls.SYNONYMS)
-        combined.update(cls.FUND_ALIASES)
-        # Sort by length descending for greedy matching
-        return sorted(combined.items(), key=lambda x: len(x[0]), reverse=True)
+    def _get_sorted_patterns(cls) -> list[tuple[str, str]]:
+        """Sort patterns by length descending to ensure greedy matching."""
+        return sorted(cls.FUZZY_MAPPING.items(), key=lambda x: len(x[0]), reverse=True)
 
     def normalize(self, query: str) -> NormalizedQuery:
         original = query.strip()
@@ -85,23 +39,35 @@ class QueryNormalizer:
         # 1. Lowercase
         text = original.lower()
 
-        # 2. Strip punctuation (replace with spaces)
+        # 2. Basic cleanup (punctuation to spaces)
+        # Keep dots for some acronyms initially? No, architecture says strip punctuation
         text = re.sub(r"[^\w\s]", " ", text)
 
         # 3. Collapse multiple spaces
         text = re.sub(r"\s+", " ", text).strip()
 
-        # 4. Apply replacements (longest phrase first)
-        patterns = self._build_replacement_patterns()
-        for phrase, replacement in patterns:
-            # Use word-boundary-safe replacement for single words, plain for phrases
+        # 4. Multi-pass normalization (to handle phrases and then components)
+        patterns = self._get_sorted_patterns()
+        
+        # We do two passes: 
+        # Pass 1: Exact phrase replacements (longest first)
+        for phrase, canonical in patterns:
+            # Word boundary check for non-phrase patterns
             if " " in phrase:
-                new_text = text.replace(phrase, replacement)
+                # Phrase replacement
+                if phrase in text:
+                    text = text.replace(phrase, canonical)
+                    transformations.append(f"Phrase match: {phrase} -> {canonical}")
             else:
-                new_text = re.sub(rf"\b{re.escape(phrase)}\b", replacement, text)
-            if new_text != text:
-                transformations.append(f"{phrase} -> {replacement}")
-                text = new_text
+                # Word-by-word replacement with regex
+                new_text = re.sub(rf"\b{re.escape(phrase)}\b", canonical, text)
+                if new_text != text:
+                    text = new_text
+                    transformations.append(f"Word match: {phrase} -> {canonical}")
+
+        # Final cleanup to remove redundant words (e.g. "small cap fund fund")
+        text = re.sub(r"\b(fund|scheme)\s+\1\b", r"\1", text)
+        text = re.sub(r"\s+", " ", text).strip()
 
         return NormalizedQuery(
             original=original,
@@ -113,19 +79,3 @@ class QueryNormalizer:
 def run_normalizer(query: str) -> NormalizedQuery:
     """Convenience entry-point."""
     return QueryNormalizer().normalize(query)
-
-
-if __name__ == "__main__":
-    tests = [
-        "What is the expense ratio of the Small Cap Fund?",
-        "What are the charges for liquid?",
-        "Tell me the NAV and min SIP for Flexi Cap.",
-        "Exit load of Gold ETF?",
-        "Should I compare Small Cap vs Liquid?",
-    ]
-    for q in tests:
-        res = run_normalizer(q)
-        print(f"Original:  {res.original}")
-        print(f"Canonical: {res.normalized}")
-        print(f"Changes:   {res.transformations}")
-        print("-" * 50)
