@@ -9,7 +9,8 @@ class IntentResult(BaseModel):
     detected_url: Optional[str] = None
 
 class IntentClassifier:
-    URL_PATTERN = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+"
+    # Captures full URL including path and query params
+    URL_PATTERN = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2})|[/?:@!$&'()*+,;=._~-])+"
     
     ADVISORY_TRIGGERS = [
         r"\bshould\b",
