@@ -35,6 +35,21 @@ def run_full_ingestion():
     print("   Mutual Fund FAQ Assistant - Full Ingestion Pipeline")
     print("=======================================================")
     
+    # Ensure data directories exist
+    data_dirs = [
+        "data/0_raw_html",
+        "data/1_extracted_facts",
+        "data/2_cleaned_facts",
+        "data/3_chunks",
+        "data/4_embeddings",
+        "data/5_structured_facts"
+    ]
+    for d in data_dirs:
+        dir_path = PROJECT_ROOT / d
+        if not dir_path.exists():
+            print(f"> Creating directory: {dir_path}")
+            dir_path.mkdir(parents=True, exist_ok=True)
+    
     phases = [
         "phase_0_ingestion/0.1_fetch/fetcher.py",
         "phase_0_ingestion/0.2_extract/extractor.py",
@@ -46,9 +61,10 @@ def run_full_ingestion():
     
     for phase in phases:
         if not run_script(phase):
-            print(f"\n[CRITICAL ERROR] Ingestion aborted at {phase}")
-            # Raise exception so the API knows it failed
-            raise Exception(f"Ingestion failed at {phase}")
+            error_msg = f"Ingestion failed at {phase}"
+            print(f"\n[CRITICAL ERROR] {error_msg}")
+            # Raise exception so the API knows exactly where it failed
+            raise Exception(error_msg)
 
     print("\n=======================================================")
     print("   Ingestion Pipeline Completed Successfully!")

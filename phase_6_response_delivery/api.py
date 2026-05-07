@@ -193,7 +193,7 @@ async def chat_endpoint(request: QueryRequest):
                 logger.error(f"Ingestion failed: {e}")
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
                 return ChatResponse(
-                    text="I detected a URL but failed to ingest the data. Please ensure it's a valid mutual fund page.",
+                    text=f"I detected a URL but failed to ingest the data: {str(e)}. Please ensure it's a valid mutual fund page.",
                     source_url=None,
                     footer_date=today,
                     terminal_state="T4"
