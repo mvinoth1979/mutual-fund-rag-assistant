@@ -4,9 +4,27 @@ import os
 import subprocess
 from pathlib import Path
 
+# Get the absolute project root
+PROJECT_ROOT = Path(__file__).resolve().parent
+
 def run_script(script_path):
-    print(f"\n>>> Running: {script_path}")
-    result = subprocess.run([sys.executable, str(script_path)], capture_output=False, text=True)
+    abs_path = PROJECT_ROOT / script_path
+    print(f"\n>>> Running: {abs_path}")
+    
+    # Run with PROJECT_ROOT as CWD, capture output to log it
+    result = subprocess.run(
+        [sys.executable, str(abs_path)], 
+        capture_output=True, 
+        text=True,
+        cwd=str(PROJECT_ROOT)
+    )
+    
+    # Log stdout and stderr
+    if result.stdout:
+        print(f"[STDOUT] {script_path}:\n{result.stdout}")
+    if result.stderr:
+        print(f"[STDERR] {script_path}:\n{result.stderr}")
+    
     if result.returncode != 0:
         print(f"[ERROR] Script {script_path} failed with return code {result.returncode}")
         return False
@@ -27,10 +45,10 @@ def run_full_ingestion():
     ]
     
     for phase in phases:
-        script_path = Path(phase)
-        if not run_script(script_path):
+        if not run_script(phase):
             print(f"\n[CRITICAL ERROR] Ingestion aborted at {phase}")
-            return
+            # Raise exception so the API knows it failed
+            raise Exception(f"Ingestion failed at {phase}")
 
     print("\n=======================================================")
     print("   Ingestion Pipeline Completed Successfully!")

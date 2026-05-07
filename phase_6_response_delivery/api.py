@@ -176,8 +176,12 @@ async def chat_endpoint(request: QueryRequest):
             # We run this in the background or blocking? User wants to know when it's available.
             # Blocking for now to ensure T6 means it's ready.
             from run_ingestion import run_full_ingestion
+            from phase_2_corpus_retrieval.phase_2_orchestrator import reset_phase_2_orchestrator
             try:
                 run_full_ingestion()
+                # Invalidate cache to force reload of new corpus
+                reset_phase_2_orchestrator()
+                
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
                 return ChatResponse(
                     text="New fund source added successfully. I have updated my knowledge base and am now ready to answer questions about this scheme.",

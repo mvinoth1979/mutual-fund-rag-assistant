@@ -174,6 +174,13 @@ def get_phase_2_orchestrator() -> Phase2Orchestrator:
     return _orchestrator
 
 
+def reset_phase_2_orchestrator():
+    """Reset the global orchestrator instance (force reload on next query)."""
+    global _orchestrator
+    logger.info("Resetting Phase 2 Orchestrator (cache invalidation)")
+    _orchestrator = None
+
+
 def run_phase_2(query: str) -> Phase2Result:
     """
     Convenience function to run Phase 2 retrieval.
