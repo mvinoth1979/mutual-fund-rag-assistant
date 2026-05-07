@@ -1,0 +1,13 @@
+{
+  "name": "mutual-fund-rag-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd phase_7_frontend && npm install && npm run build && cd .. && mkdir -p dist && cp -r phase_7_frontend/dist/* dist/",
+    "dev": "concurrently \"python phase_6_response_delivery/api.py\" \"cd phase_7_frontend && npm run dev\"",
+    "start": "python phase_6_response_delivery/api.py"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
