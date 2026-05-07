@@ -36,12 +36,9 @@ dist-ssr/
 .env.production
 .env.local
 
-# Project specific
+# Project specific (Managed by .vercelignore for deployment)
 data/0_raw_html/
-data/1_extracted_facts/
 data/2_normalized_text/
-data/3_chunks/
-data/4_embeddings/
 data/7_audit_logs/
 data/8_query_logs/
 data/9_response_cache/
