@@ -47,5 +47,5 @@ COPY --from=builder /app/phase_7_frontend/dist /app/static
 # Expose the port Railway uses (default 8080 or $PORT)
 EXPOSE 8080
 
-# Run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Run the application using the port provided by Railway
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]
