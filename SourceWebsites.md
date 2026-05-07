@@ -21,3 +21,4 @@ The following URLs are the official source of data for the Mutual Fund FAQ Assis
 - https://groww.in/mutual-funds/icici-prudential-pharma-healthcare-and-diagnostics-(p.h.d)-fund-direct-growth
 - https://groww.in/mutual-funds/axis-silver-fof-direct-growth
 - https://groww.in/mutual-funds/axis-large-cap-fund-direct-growth
+- https://groww.in/mutual-funds/nippon-india-multi-cap-fund-direct-growth

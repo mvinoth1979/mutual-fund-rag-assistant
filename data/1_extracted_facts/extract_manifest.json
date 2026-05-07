@@ -1,7 +1,7 @@
 {
-  "run_id": "2026-05-07T06:54:30.100788+00:00",
-  "total_docs": 19,
-  "successful": 19,
+  "run_id": "2026-05-07T11:40:54.274840+00:00",
+  "total_docs": 20,
+  "successful": 20,
   "fallback_to_raw": 0,
   "failed": 0,
   "results": [
@@ -174,6 +174,15 @@
       "fallback_to_raw": false,
       "facts_count": 9,
       "high_confidence_count": 7,
+      "error": null
+    },
+    {
+      "doc_id": "DOC-020",
+      "source_url": "https://groww.in/mutual-funds/nippon-india-multi-cap-fund-direct-growth",
+      "extraction_success": true,
+      "fallback_to_raw": false,
+      "facts_count": 8,
+      "high_confidence_count": 6,
       "error": null
     }
   ]

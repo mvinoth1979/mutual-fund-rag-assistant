@@ -1,6 +1,12 @@
+
 import requests
+import json
 
 url = "http://localhost:8000/api/chat"
-payload = {"query": "What is the NAV of The Wealth Company Small Cap Fund?"}
-response = requests.post(url, json=payload)
-print(response.json())
+data = {"query": "Expense Ratio of Axis Large Cap Fund"}
+try:
+    response = requests.post(url, json=data, timeout=30)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.json()}")
+except Exception as e:
+    print(f"Error: {e}")

@@ -1,7 +1,7 @@
 {
-  "run_id": "2026-05-07T06:54:49.398905+00:00",
-  "total_docs": 19,
-  "successful": 19,
+  "run_id": "2026-05-07T11:41:17.419342+00:00",
+  "total_docs": 20,
+  "successful": 20,
   "failed": 0,
   "results": [
     {
@@ -134,6 +134,13 @@
       "doc_id": "DOC-019",
       "source_url": "https://groww.in/mutual-funds/axis-large-cap-fund-direct-growth",
       "typed_facts_count": 9,
+      "rejected_count": 0,
+      "error": null
+    },
+    {
+      "doc_id": "DOC-020",
+      "source_url": "https://groww.in/mutual-funds/nippon-india-multi-cap-fund-direct-growth",
+      "typed_facts_count": 8,
       "rejected_count": 0,
       "error": null
     }
