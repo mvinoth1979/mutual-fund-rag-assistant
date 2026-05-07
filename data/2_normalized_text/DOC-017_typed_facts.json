@@ -1,0 +1,63 @@
+{
+  "doc_id": "DOC-017",
+  "source_url": "https://groww.in/mutual-funds/icici-prudential-pharma-healthcare-and-diagnostics-(p.h.d)-fund-direct-growth",
+  "normalized_at": "2026-05-07T11:41:18.466958+00:00",
+  "typed_facts": [
+    {
+      "fact_type": "expense_ratio",
+      "value": "1.31%",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "nav",
+      "value": "₹44.77",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "aum",
+      "value": "₹6293.14 Cr",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "min_sip",
+      "value": "₹100",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "min_lumpsum",
+      "value": "₹5000",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "exit_load",
+      "value": "Exit load of 1%",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "benchmark",
+      "value": "BSE Healthcare Total Return Index",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "fund_manager",
+      "value": "of ICICI Prudential Pharma Healthcare and Diagnostics",
+      "confidence": "MEDIUM",
+      "normalized": true
+    },
+    {
+      "fact_type": "risk_level",
+      "value": "Mutual Funds screener Filter funds based on",
+      "confidence": "MEDIUM",
+      "normalized": true
+    }
+  ],
+  "rejected_facts": [],
+  "error": null
+}
