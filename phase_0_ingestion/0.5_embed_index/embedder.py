@@ -112,6 +112,7 @@ class GeminiEmbedder:
         MODEL_CANDIDATES = [
             "models/text-embedding-004",
             "models/embedding-001",
+            "text-embedding-004",
             "embedding-001"
         ]
         
@@ -124,6 +125,7 @@ class GeminiEmbedder:
             
             for model_name in MODEL_CANDIDATES:
                 try:
+                    # Try with task_type
                     response = self.genai.embed_content(
                         model=model_name,
                         content=batch,
@@ -131,21 +133,34 @@ class GeminiEmbedder:
                     )
                     results.extend(response["embedding"])
                     success = True
-                    # Update active model name if it worked
                     self.model_name = model_name 
                     break
                 except Exception as e:
                     last_err = e
-                    if "404" in str(e) or "not found" in str(e).lower():
+                    # If task_type is the problem, try without it
+                    try:
+                        response = self.genai.embed_content(
+                            model=model_name,
+                            content=batch
+                        )
+                        results.extend(response["embedding"])
+                        success = True
+                        self.model_name = model_name
+                        break
+                    except:
                         continue
-                    else:
-                        raise e
             
             if not success:
+                # DIAGNOSTIC: List available models to logs
+                try:
+                    available_models = [m.name for m in self.genai.list_models() if 'embedContent' in m.supported_generation_methods]
+                    logger.error(f"Embedding failed. Available embedding models: {available_models}")
+                except:
+                    pass
                 logger.error(f"All embedding model candidates failed. Last error: {last_err}")
                 raise last_err
                 
-            time.sleep(2) 
+            time.sleep(1) 
         return results
 
 class BGEEmbedder:
