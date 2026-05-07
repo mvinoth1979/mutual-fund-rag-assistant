@@ -494,7 +494,7 @@ def run_embed_phase() -> Dict[str, Any]:
         save_embeddings(all_records, DATA_EMBEDDINGS)
 
     # 6. Final validation
-    chroma_count = chroma.count()
+    chroma_count = chroma.count() if chroma.collection else 0
     logger.info(f"Chroma collection count: {chroma_count}")
     manifest["chroma_count"] = chroma_count
 
