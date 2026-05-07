@@ -109,9 +109,40 @@ async def chat_endpoint(request: QueryRequest):
         logger.info(f"Phase 1 result: {p1_result}")
 
         # --- Dynamic URL Addition Feature ---
-        if p1_result.get("intent", {}).get("classification") == "URL_ADDITION":
-            url = p1_result["sanitized_query"]
-            logger.info(f"URL Addition triggered for: {url}")
+        intent_info = p1_result.get("intent", {})
+        if intent_info.get("classification") == "URL_ADDITION":
+            url = intent_info.get("detected_url")
+            query_text = p1_result.get("query", "")
+            
+            # Security Guardrail 1: Domain Whitelisting
+            TRUSTED_DOMAINS = ["groww.in", "www.groww.in"]
+            parsed_url = urlparse(url)
+            if parsed_url.netloc not in TRUSTED_DOMAINS:
+                logger.warning(f"BLOCKED: Attempt to ingest untrusted domain: {parsed_url.netloc}")
+                return ChatResponse(
+                    text="Access Denied: I only accept mutual fund data from trusted sources (e.g., groww.in).",
+                    source_url=None,
+                    footer_date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                    terminal_state="T4"
+                )
+
+            # Security Guardrail 2: Admin Password Protection
+            ADMIN_PASSWORD = os.getenv("ADMIN_INGESTION_PASSWORD", "12345")
+            # Look for "Password: XXX" or just "XXX" in the query
+            password_match = re.search(r"Password:\s*(\S+)", query_text, re.IGNORECASE)
+            provided_password = password_match.group(1) if password_match else ""
+            
+            if provided_password != ADMIN_PASSWORD:
+                logger.warning("BLOCKED: Ingestion attempted with incorrect or missing password.")
+                return ChatResponse(
+                    text="Authentication Required: Please provide the admin password to add new sources (e.g., 'Add URL: [link] Password: XXX').",
+                    source_url=None,
+                    footer_date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                    terminal_state="T4"
+                )
+
+            # Proceed if both checks pass
+            logger.info(f"Authorized URL ingestion started for: {url}")
             
             # 1. Update SourceWebsites.md
             source_file = PROJECT_ROOT / "SourceWebsites.md"

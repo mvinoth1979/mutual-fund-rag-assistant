@@ -37,9 +37,9 @@ DATA_STRUCTURED = Path(os.getenv("DATA_STRUCTURED", "./data/5_structured_facts")
 DATA_CHROMA = Path(os.getenv("DATA_CHROMA", "./data/6_chroma_index"))
 
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
-GEMINI_EMBEDDING_MODEL = "models/gemini-embedding-001"
-EXPECTED_DIM = 3072
-GEMINI_DIM = 3072
+GEMINI_EMBEDDING_MODEL = "models/text-embedding-004"
+EXPECTED_DIM = 768
+GEMINI_DIM = 768
 BATCH_SIZE = 16
 
 # =============================================================================
@@ -212,18 +212,16 @@ class EmbeddingValidator:
 
 class ChromaStore:
     def __init__(self, persist_dir: Path):
-        import chromadb
+        try:
+            import chromadb
+            self.available = True
+        except ImportError:
+            self.available = False
+            logger.warning("chromadb not installed. Skipping Chroma indexing (production uses SimpleVectorStore).")
+            return
 
         self.persist_dir = Path(persist_dir)
-        # We use SimpleVectorStore for production, Chroma is optional
         self.collection = None
-        # self.persist_dir.mkdir(parents=True, exist_ok=True)
-        # self.client = chromadb.PersistentClient(path=str(self.persist_dir))
-        # self.collection = self.client.get_or_create_collection(
-        #     name="mutual_fund_chunks",
-        #     metadata={"hnsw:space": "cosine"},
-        # )
-        # logger.info(f"Chroma collection ready at {self.persist_dir}")
 
     def upsert(self, records: List[EmbedResult]) -> int:
         """Upsert embedding records into Chroma."""

@@ -85,6 +85,7 @@ def run_phase_1(query: str):
         "classification": intent_result.classification,
         "advisory_score": intent_result.advisory_score,
         "triggers_matched": intent_result.triggers_matched,
+        "detected_url": intent_result.detected_url
     }
 
     # ------------------------------------------------------------------
