@@ -7,7 +7,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/phase_7_frontend/dist/$1"
+      "destination": "/dist/$1"
     }
   ]
 }
