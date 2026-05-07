@@ -1,6 +1,8 @@
 import os
 import sys
 import logging
+import re
+from urllib.parse import urlparse
 from pathlib import Path
 from datetime import datetime, timezone
 from typing import Optional
@@ -111,7 +113,7 @@ async def chat_endpoint(request: QueryRequest):
         # --- Dynamic URL Addition Feature ---
         intent_info = p1_result.get("intent", {})
         if intent_info.get("classification") == "URL_ADDITION":
-            url = intent_info.get("detected_url")
+            url = intent_info.get("detected_url", "")
             query_text = p1_result.get("query", "")
             
             # Security Guardrail 1: Domain Whitelisting

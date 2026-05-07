@@ -108,23 +108,44 @@ class GeminiEmbedder:
         if not texts:
             return []
         
-        # Google API has limits on batch size or request size
+        # Models to try in order of preference
+        MODEL_CANDIDATES = [
+            "models/text-embedding-004",
+            "models/embedding-001",
+            "embedding-001"
+        ]
+        
         results = []
-        batch_size = 10 # Optimized for free tier
+        batch_size = 10
         for i in range(0, len(texts), batch_size):
             batch = texts[i : i + batch_size]
-            try:
-                response = self.genai.embed_content(
-                    model=self.model_name,
-                    content=batch,
-                    task_type=task_type
-                )
-                # Google returns a list of embeddings under the 'embedding' key
-                results.extend(response["embedding"])
-                time.sleep(5) # Delay inside batch loop
-            except Exception as e:
-                logger.error(f"Gemini Embedding error: {e}")
-                raise e
+            success = False
+            last_err = None
+            
+            for model_name in MODEL_CANDIDATES:
+                try:
+                    response = self.genai.embed_content(
+                        model=model_name,
+                        content=batch,
+                        task_type=task_type
+                    )
+                    results.extend(response["embedding"])
+                    success = True
+                    # Update active model name if it worked
+                    self.model_name = model_name 
+                    break
+                except Exception as e:
+                    last_err = e
+                    if "404" in str(e) or "not found" in str(e).lower():
+                        continue
+                    else:
+                        raise e
+            
+            if not success:
+                logger.error(f"All embedding model candidates failed. Last error: {last_err}")
+                raise last_err
+                
+            time.sleep(2) 
         return results
 
 class BGEEmbedder:
