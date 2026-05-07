@@ -74,6 +74,17 @@ compliance_pipeline = CompliancePipeline(banned_phrases_path=banned_phrases_path
 async def health_check():
     return {"status": "ok", "message": "Mutual Fund RAG Assistant API is running"}
 
+@app.get("/api/debug-data")
+@app.get("/debug-data")
+async def debug_data():
+    data_path = PROJECT_ROOT / "data"
+    results = {}
+    if data_path.exists():
+        for item in data_path.rglob("*"):
+            if item.is_file():
+                results[str(item.relative_to(PROJECT_ROOT))] = f"{item.stat().st_size} bytes"
+    return {"root": str(PROJECT_ROOT), "files": results}
+
 @app.post("/api/chat", response_model=ChatResponse)
 @app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: QueryRequest):
