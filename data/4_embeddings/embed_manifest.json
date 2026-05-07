@@ -1,21 +1,21 @@
 {
-  "run_id": "2026-05-07T06:33:01.150722+00:00",
+  "run_id": "2026-05-07T06:55:15.069240+00:00",
   "model": "BAAI/bge-large-en-v1.5",
   "expected_dim": 1024,
-  "total_chunks": 127,
-  "embedded": 127,
+  "total_chunks": 192,
+  "embedded": 192,
   "rejected": 0,
   "facts_stored": 171,
   "results": [
     {
       "doc_id": "DOC-001",
-      "chunks_embedded": 3,
+      "chunks_embedded": 7,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-002",
-      "chunks_embedded": 3,
+      "chunks_embedded": 7,
       "facts_stored": 9,
       "error": null
     },
@@ -27,100 +27,100 @@
     },
     {
       "doc_id": "DOC-004",
-      "chunks_embedded": 4,
+      "chunks_embedded": 8,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-005",
-      "chunks_embedded": 2,
+      "chunks_embedded": 4,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-006",
-      "chunks_embedded": 5,
+      "chunks_embedded": 8,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-007",
-      "chunks_embedded": 4,
+      "chunks_embedded": 9,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-008",
-      "chunks_embedded": 9,
+      "chunks_embedded": 10,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-009",
-      "chunks_embedded": 6,
+      "chunks_embedded": 11,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-010",
-      "chunks_embedded": 9,
+      "chunks_embedded": 11,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-011",
-      "chunks_embedded": 23,
+      "chunks_embedded": 28,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-012",
-      "chunks_embedded": 8,
+      "chunks_embedded": 12,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-013",
-      "chunks_embedded": 9,
+      "chunks_embedded": 14,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-014",
-      "chunks_embedded": 6,
+      "chunks_embedded": 12,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-015",
-      "chunks_embedded": 8,
+      "chunks_embedded": 10,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-016",
-      "chunks_embedded": 5,
+      "chunks_embedded": 10,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-017",
-      "chunks_embedded": 6,
+      "chunks_embedded": 9,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-018",
-      "chunks_embedded": 4,
+      "chunks_embedded": 5,
       "facts_stored": 9,
       "error": null
     },
     {
       "doc_id": "DOC-019",
-      "chunks_embedded": 6,
+      "chunks_embedded": 10,
       "facts_stored": 9,
       "error": null
     }
   ],
-  "chroma_count": 660
+  "chroma_count": 852
 }

@@ -288,6 +288,13 @@ class FactTypeDetector:
     def is_noise(self, text: str) -> bool:
         """Check if a sentence is likely navigation/footer noise."""
         text_lower = text.lower()
+        
+        # PROTECT: If it contains high-value data keywords, it's NOT noise
+        protected_keywords = ["expense ratio", "latest nav", "nav as of", "nav:", "fund size (aum)", "total aum", "min. for sip", "exit load"]
+        for pkw in protected_keywords:
+            if pkw in text_lower:
+                return False
+
         for kw in self.NOISE_KEYWORDS:
             if kw in text_lower:
                 return True

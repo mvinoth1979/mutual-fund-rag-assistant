@@ -117,39 +117,34 @@ class HybridRetriever:
         return candidates, max_score
 
     def _structured_lookup(self, doc_ids: List[str], fact_type: Optional[str], fact_confidence: float) -> Optional[Dict]:
-        if fact_confidence < 0.8 or len(doc_ids) != 1 or not fact_type:
-            return None
-        doc_id = doc_ids[0]
-        fund_name = self.DOC_ID_TO_NAME.get(doc_id, doc_id)
-        
-        with sqlite3.connect(self.sqlite_db) as conn:
-            row = conn.execute("SELECT value FROM structured_facts WHERE doc_id = ? AND fact_type = ?", (doc_id, fact_type)).fetchone()
-        if not row:
+        if fact_confidence < 0.8 or not doc_ids or not fact_type:
             return None
         
-        source_url = ""
-        for chunk in self.chunks:
-            if chunk["doc_id"] == doc_id:
-                source_url = chunk["source_url"]
-                if chunk["chunk_type"] == fact_type:
-                    return {
-                        "chunk_id": chunk["chunk_id"],
-                        "doc_id": doc_id,
-                        "source_url": chunk["source_url"],
-                        "chunk_type": fact_type,
-                        "text": f"The {fact_type.replace('_', ' ')} for {fund_name} is {row[0]}.",
-                        "similarity": 1.0,
-                        "retriever": "structured",
-                    }
-        return {
-            "chunk_id": f"structured_{doc_id}_{fact_type}",
-            "doc_id": doc_id,
-            "source_url": source_url,
-            "chunk_type": fact_type,
-            "text": f"The {fact_type.replace('_', ' ')} for {fund_name} is {row[0]}.",
-            "similarity": 1.0,
-            "retriever": "structured",
-        }
+        # Try lookup for each mentioned fund
+        for doc_id in doc_ids:
+            fund_name = self.DOC_ID_TO_NAME.get(doc_id, doc_id)
+            
+            with sqlite3.connect(self.sqlite_db) as conn:
+                row = conn.execute("SELECT value FROM structured_facts WHERE doc_id = ? AND fact_type = ?", (doc_id, fact_type)).fetchone()
+            
+            if row:
+                # Find matching source URL from chunks or manifest
+                source_url = ""
+                for chunk in self.chunks:
+                    if chunk["doc_id"] == doc_id:
+                        source_url = chunk["source_url"]
+                        break
+                
+                return {
+                    "chunk_id": f"structured_{doc_id}_{fact_type}",
+                    "doc_id": doc_id,
+                    "source_url": source_url,
+                    "chunk_type": fact_type,
+                    "text": f"The {fact_type.replace('_', ' ')} for {fund_name} is {row[0]}.",
+                    "similarity": 1.0,
+                    "retriever": "structured",
+                }
+        return None
 
     def _rrf_fusion(self, dense: List[Tuple[str, float]], bm25: List[Tuple[str, float]], structured: Optional[Dict]) -> List[RetrievalCandidate]:
         dense_ranks = {cid: rank + 1 for rank, (cid, _) in enumerate(dense)}

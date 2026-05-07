@@ -1,7 +1,7 @@
 {
   "doc_id": "DOC-012",
   "source_url": "https://groww.in/mutual-funds/icici-prudential-technology-fund-direct-growth",
-  "extracted_at": "2026-05-07T06:31:44.583244+00:00",
+  "extracted_at": "2026-05-07T06:54:41.320525+00:00",
   "extraction_success": true,
   "fallback_to_raw": false,
   "error": null,
@@ -25,7 +25,7 @@
       "value": "₹12,574.57 Cr",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+10.30\n%\n3Y annualised\n-0.06\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 06 May '26\n₹191.06\nMin. for SIP\n₹100\nFund size (AUM)\n₹12,574.57 Cr"
+      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+10.71\n%\n3Y annualised\n+1.16\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 06 May '26\n₹191.06\nMin. for SIP\n₹100\nFund size (AUM)\n₹12,574.57 Cr"
     },
     {
       "fact_type": "min_sip",

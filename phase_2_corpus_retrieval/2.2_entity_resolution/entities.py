@@ -114,9 +114,30 @@ class EntityResolver:
     def resolve(self, original_query: str, normalized_query: str) -> ResolvedQuery:
         text = normalized_query.lower()
         mentioned_funds: list[str] = []
-        for alias, doc_id in self.FUND_MAP.items():
-            if alias in text and doc_id not in mentioned_funds:
-                mentioned_funds.append(doc_id)
+        
+        # Sort aliases by length descending to prioritize more specific matches (e.g., 'Axis Large Cap Fund' over 'Large Cap Fund')
+        sorted_aliases = sorted(self.FUND_MAP.keys(), key=len, reverse=True)
+        
+        # Track which parts of the text have already been matched to avoid double-counting or partial matches
+        matched_indices = []
+
+        for alias in sorted_aliases:
+            if alias in text:
+                # Check if this alias is already covered by a longer match
+                start_idx = text.find(alias)
+                end_idx = start_idx + len(alias)
+                
+                is_submatch = False
+                for m_start, m_end in matched_indices:
+                    if start_idx >= m_start and end_idx <= m_end:
+                        is_submatch = True
+                        break
+                
+                if not is_submatch:
+                    doc_id = self.FUND_MAP[alias]
+                    if doc_id not in mentioned_funds:
+                        mentioned_funds.append(doc_id)
+                        matched_indices.append((start_idx, end_idx))
 
         if len(mentioned_funds) == 1:
             fund_confidence = 1.0

@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+18.37
++18.81
 %
 3Y annualised
--0.21
++1.17
 %
 1D
 1M
@@ -1278,10 +1278,10 @@ Name
 10Y
 All
 Fund returns
-+18.4%
-+19.3%
-+17.0%
-+16.3%
++18.8%
++19.5%
++17.1%
++16.4%
 Category average (
 Hybrid Multi Asset Allocation
 )
@@ -1337,17 +1337,17 @@ Quant Multi Asset Allocation Fund Direct Growth
 +24.49%
 4,754.57
 Nippon India Multi Asset Allocation Fund Direct Growth
-+19.48%
-+21.82%
++21.20%
++22.25%
 13,138.56
+ICICI Prudential Multi Asset Fund Direct Growth
++10.90%
++18.81%
+77,658.27
 SBI Multi Asset Allocation Fund Direct Growth
 +18.50%
 +18.75%
 16,149.83
-ICICI Prudential Multi Asset Fund Direct Growth
-+9.56%
-+18.37%
-77,658.27
 HDFC Multi Asset Allocation Fund Direct Growth
 +8.27%
 +14.60%
