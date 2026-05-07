@@ -108,8 +108,9 @@ class GeminiEmbedder:
         if not texts:
             return []
         
-        # Models to try in order of preference
+        # Models found in your Railway logs
         MODEL_CANDIDATES = [
+            "models/gemini-embedding-001",
             "models/text-embedding-004",
             "models/embedding-001",
             "text-embedding-004",
