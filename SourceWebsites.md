@@ -1,0 +1,23 @@
+# Source Websites
+
+The following URLs are the official source of data for the Mutual Fund FAQ Assistant. The system will process these URLs from scratch to build the knowledge base.
+
+- https://groww.in/mutual-funds/the-wealth-company-small-cap-fund-direct-growth
+- https://groww.in/mutual-funds/the-wealth-company-ethical-fund-direct-growth
+- https://groww.in/mutual-funds/the-wealth-company-multi-asset-allocation-fund-direct-growth
+- https://groww.in/mutual-funds/the-wealth-company-flexi-cap-fund-direct-growth
+- https://groww.in/mutual-funds/the-wealth-company-gold-etf-fof-direct-growth
+- https://groww.in/mutual-funds/the-wealth-company-liquid-fund-direct-growth
+- https://groww.in/mutual-funds/the-wealth-company-arbitrage-fund-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-silver-etf-fof-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-large-cap-fund-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-bharat-22-fof-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-dynamic-plan-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-technology-fund-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-nifty-next-50-index-fund-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-top-100-fund-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-gold-etf-fof-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-infrastructure-fund-direct-growth
+- https://groww.in/mutual-funds/icici-prudential-pharma-healthcare-and-diagnostics-(p.h.d)-fund-direct-growth
+- https://groww.in/mutual-funds/axis-silver-fof-direct-growth
+- https://groww.in/mutual-funds/axis-large-cap-fund-direct-growth

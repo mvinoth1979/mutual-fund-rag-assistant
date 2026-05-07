@@ -1,0 +1,59 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv
+venv/
+ENV/
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Environment variables
+.env
+.env.production
+.env.local
+
+# Project specific
+data/0_raw_html/
+data/7_audit_logs/
+data/8_query_logs/
+data/9_response_cache/
+
+# We might want to keep the processed data for deployment, 
+# but usually it's better to process it or use an external store.
+# For now, let's ignore the big index files if they are too large, 
+# but 94MB is okay.
+# data/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

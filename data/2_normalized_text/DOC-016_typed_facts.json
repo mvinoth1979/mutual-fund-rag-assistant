@@ -1,0 +1,63 @@
+{
+  "doc_id": "DOC-016",
+  "source_url": "https://groww.in/mutual-funds/icici-prudential-infrastructure-fund-direct-growth",
+  "normalized_at": "2026-05-07T06:31:51.261886+00:00",
+  "typed_facts": [
+    {
+      "fact_type": "expense_ratio",
+      "value": "1.89%",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "nav",
+      "value": "₹221.25",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "aum",
+      "value": "₹7553.54 Cr",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "min_sip",
+      "value": "₹100",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "min_lumpsum",
+      "value": "₹5000",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "exit_load",
+      "value": "Exit load of 1%",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "benchmark",
+      "value": "BSE India Infrastructure Total Return Index",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "fund_manager",
+      "value": "of ICICI Prudential Infrastructure Direct Growth fund",
+      "confidence": "MEDIUM",
+      "normalized": true
+    },
+    {
+      "fact_type": "risk_level",
+      "value": "Mutual Funds screener Filter funds based on",
+      "confidence": "MEDIUM",
+      "normalized": true
+    }
+  ],
+  "rejected_facts": [],
+  "error": null
+}

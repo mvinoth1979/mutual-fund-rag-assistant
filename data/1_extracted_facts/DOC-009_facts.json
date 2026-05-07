@@ -1,0 +1,73 @@
+{
+  "doc_id": "DOC-009",
+  "source_url": "https://groww.in/mutual-funds/icici-prudential-large-cap-fund-direct-growth",
+  "extracted_at": "2026-05-07T06:31:40.547396+00:00",
+  "extraction_success": true,
+  "fallback_to_raw": false,
+  "error": null,
+  "facts": [
+    {
+      "fact_type": "expense_ratio",
+      "value": "1.06%",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "Expense ratio\n1.06%"
+    },
+    {
+      "fact_type": "nav",
+      "value": "₹119.39",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "NAV: 06 May '26\n₹119.39"
+    },
+    {
+      "fact_type": "aum",
+      "value": "₹69,947.55 Cr",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+16.34\n%\n3Y annualised\n+1.23\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 06 May '26\n₹119.39\nMin. for SIP\n₹100\nFund size (AUM)\n₹69,947.55 Cr"
+    },
+    {
+      "fact_type": "min_sip",
+      "value": "₹100",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "Minimum SIP Investment is set to ₹100."
+    },
+    {
+      "fact_type": "min_lumpsum",
+      "value": "₹100",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "Minimum Lumpsum Investment is ₹100."
+    },
+    {
+      "fact_type": "exit_load",
+      "value": "Exit load of 1%, if redeemed within 1 month",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "Exit load\nA fee payable to a mutual fund house for exiting a fund (fully or partially) before the completion of a specified period from the date of investment.\nStamp duty\nA form of tax payable for the purchase or sale of an asset or security.\nExit Load\n06 Apr 2026\nExit load of 1%, if redeemed within 1 month"
+    },
+    {
+      "fact_type": "benchmark",
+      "value": "NIFTY 100 Total Return Index",
+      "confidence": "HIGH",
+      "source": "regex",
+      "raw_snippet": "benchmark\nNIFTY 100 Total Return Index\n"
+    },
+    {
+      "fact_type": "fund_manager",
+      "value": "of ICICI Prudential Large Cap Fund Direct Growth fund",
+      "confidence": "MEDIUM",
+      "source": "regex",
+      "raw_snippet": "Fund Manager of ICICI Prudential Large Cap Fund Direct Growth fund"
+    },
+    {
+      "fact_type": "risk_level",
+      "value": "Mutual Funds screener\nFilter funds based on",
+      "confidence": "MEDIUM",
+      "source": "regex",
+      "raw_snippet": "\nMutual Funds screener\nFilter funds based on risk"
+    }
+  ]
+}
