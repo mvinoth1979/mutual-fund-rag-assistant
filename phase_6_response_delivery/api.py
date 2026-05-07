@@ -132,13 +132,16 @@ async def chat_endpoint(request: QueryRequest):
                         subprocess.run(["git", "config", "user.email", "bot@rag-assistant.com"], check=True)
                         subprocess.run(["git", "config", "user.name", "RAG Assistant Bot"], check=True)
                         
+                        # Set remote with token for authentication
+                        repo_url = f"https://{github_token}@github.com/mvinoth1979/mutual-fund-rag-assistant.git"
+                        subprocess.run(["git", "remote", "set-url", "origin", repo_url], check=False) # May already exist
+                        
                         # Add and commit
                         subprocess.run(["git", "add", "SourceWebsites.md"], check=True)
                         subprocess.run(["git", "commit", "-m", f"Automated: added new fund source {url}"], check=True)
                         
-                        # Push using token
-                        repo_url = f"https://{github_token}@github.com/mvinoth1979/mutual-fund-rag-assistant.git"
-                        subprocess.run(["git", "push", repo_url, "master"], check=True)
+                        # Push current branch (HEAD)
+                        subprocess.run(["git", "push", "origin", "HEAD"], check=True)
                         logger.info("Successfully pushed SourceWebsites.md to GitHub")
                     except Exception as git_err:
                         logger.error(f"Failed to push to GitHub: {git_err}")
