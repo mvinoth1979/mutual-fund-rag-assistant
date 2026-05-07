@@ -76,13 +76,26 @@ async def health_check():
 @app.get("/api/debug-data")
 @app.get("/debug-data")
 async def debug_data():
-    data_path = PROJECT_ROOT / "data"
     results = {}
-    if data_path.exists():
-        for item in data_path.rglob("*"):
-            if item.is_file():
-                results[str(item.relative_to(PROJECT_ROOT))] = f"{item.stat().st_size} bytes"
-    return {"root": str(PROJECT_ROOT), "files": results}
+    # List files in PROJECT_ROOT recursively, but limit to avoid huge output
+    for item in PROJECT_ROOT.rglob("*"):
+        if item.is_file():
+            rel_path = str(item.relative_to(PROJECT_ROOT))
+            # Only show relevant data files or config files
+            if "data/" in rel_path or "api/" in rel_path or ".json" in rel_path:
+                results[rel_path] = f"{item.stat().st_size} bytes"
+    
+    # Also check specific critical paths
+    manifest_path = PROJECT_ROOT / "data" / "1_extracted_facts" / "extract_manifest.json"
+    embeddings_path = PROJECT_ROOT / "data" / "4_embeddings" / "embeddings.json"
+    
+    return {
+        "cwd": os.getcwd(),
+        "project_root": str(PROJECT_ROOT),
+        "manifest_exists": manifest_path.exists(),
+        "embeddings_exists": embeddings_path.exists(),
+        "files_found": results
+    }
 
 @app.post("/api/chat", response_model=ChatResponse)
 @app.post("/chat", response_model=ChatResponse)
