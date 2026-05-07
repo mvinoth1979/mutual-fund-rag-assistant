@@ -132,7 +132,7 @@ class BGEEmbedder:
         import httpx
         import time
 
-        api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{self.model_name}"
+        api_url = f"https://api-inference.huggingface.co/models/{self.model_name}"
         headers = {}
         if self.hf_token:
             headers["Authorization"] = f"Bearer {self.hf_token}"
