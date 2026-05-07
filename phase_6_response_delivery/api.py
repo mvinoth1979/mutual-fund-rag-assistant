@@ -69,7 +69,13 @@ generation_pipeline = ResponseGenerator()
 banned_phrases_path = str(PROJECT_ROOT / "phase_5_compliance_validation" / "5.1_advisory_detection" / "banned_phrases.json")
 compliance_pipeline = CompliancePipeline(banned_phrases_path=banned_phrases_path)
 
+@app.get("/api")
+@app.get("/")
+async def health_check():
+    return {"status": "ok", "message": "Mutual Fund RAG Assistant API is running"}
+
 @app.post("/api/chat", response_model=ChatResponse)
+@app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: QueryRequest):
     query = request.query
     logger.info(f"Received query: {query}")
