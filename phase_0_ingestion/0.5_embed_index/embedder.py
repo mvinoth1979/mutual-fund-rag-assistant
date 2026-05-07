@@ -37,7 +37,7 @@ DATA_STRUCTURED = Path(os.getenv("DATA_STRUCTURED", "./data/5_structured_facts")
 DATA_CHROMA = Path(os.getenv("DATA_CHROMA", "./data/6_chroma_index"))
 
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
-GEMINI_EMBEDDING_MODEL = "models/text-embedding-004"
+GEMINI_EMBEDDING_MODEL = "models/embedding-001"
 EXPECTED_DIM = 768
 GEMINI_DIM = 768
 BATCH_SIZE = 16
