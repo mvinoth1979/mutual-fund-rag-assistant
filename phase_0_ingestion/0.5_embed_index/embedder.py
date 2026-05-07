@@ -137,7 +137,7 @@ class GeminiEmbedder:
                     self.model_name = model_name 
                     break
                 except Exception as e:
-                    last_err = e
+                    logger.warning(f"Candidate {model_name} failed with task_type: {str(e)}")
                     # If task_type is the problem, try without it
                     try:
                         response = self.genai.embed_content(
@@ -148,7 +148,8 @@ class GeminiEmbedder:
                         success = True
                         self.model_name = model_name
                         break
-                    except:
+                    except Exception as e2:
+                        logger.warning(f"Candidate {model_name} failed without task_type: {str(e2)}")
                         continue
             
             if not success:
@@ -161,7 +162,7 @@ class GeminiEmbedder:
                 logger.error(f"All embedding model candidates failed. Last error: {last_err}")
                 raise last_err
                 
-            time.sleep(1) 
+            time.sleep(3) # Increased delay to avoid rate limits
         return results
 
 class BGEEmbedder:
