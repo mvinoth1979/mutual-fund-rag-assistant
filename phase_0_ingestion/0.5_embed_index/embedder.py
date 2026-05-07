@@ -156,65 +156,14 @@ class BGEEmbedder:
         if self.use_gemini:
             return self.gemini.embed(texts, task_type=task_type)
         
-        if self.use_api:
-            return self._embed_via_api(texts)
-        else:
+        # Local fallback
+        if self.model:
             embeddings = self.model.encode(
                 texts, convert_to_numpy=True, show_progress_bar=False
             )
             return [emb.tolist() for emb in embeddings]
-
-    def _embed_via_api(self, texts: List[str]) -> List[List[float]]:
-        """Call Hugging Face Inference API for embeddings."""
-        import httpx
-        import time
-
-        # Try multiple endpoints as HF can be flaky
-        endpoints = [
-            f"https://api-inference.huggingface.co/models/{self.model_name}",
-            f"https://api-inference.huggingface.co/pipeline/feature-extraction/{self.model_name}"
-        ]
         
-        headers = {}
-        if self.hf_token:
-            headers["Authorization"] = f"Bearer {self.hf_token}"
-
-        results = []
-        batch_size = 8
-        for i in range(0, len(texts), batch_size):
-            batch = texts[i : i + batch_size]
-            
-            success = False
-            for endpoint in endpoints:
-                if success: break
-                for attempt in range(2):
-                    try:
-                        response = httpx.post(
-                            endpoint, 
-                            headers=headers, 
-                            json={"inputs": batch, "options": {"wait_for_model": True}},
-                            timeout=30.0
-                        )
-                        if response.status_code == 200:
-                            batch_embeddings = response.json()
-                            results.extend(batch_embeddings)
-                            success = True
-                            break
-                        elif response.status_code == 503:
-                            time.sleep(5)
-                    except:
-                        time.sleep(1)
-            
-            if not success:
-                # If HF fails, try Gemini as last resort if available
-                try:
-                    logger.warning("HF API failed. Trying Gemini fallback...")
-                    gemini = GeminiEmbedder()
-                    return gemini.embed(texts)
-                except:
-                    raise Exception("All embedding backends failed.")
-        
-        return results
+        raise ValueError("No embedding backend available. Check GEMINI_API_KEY.")
 
     @staticmethod
     def l2_normalize(embedding: List[float]) -> List[float]:
