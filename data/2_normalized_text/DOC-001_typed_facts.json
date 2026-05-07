@@ -1,0 +1,63 @@
+{
+  "doc_id": "DOC-001",
+  "source_url": "https://groww.in/mutual-funds/the-wealth-company-small-cap-fund-direct-growth",
+  "normalized_at": "2026-05-07T06:54:49.425796+00:00",
+  "typed_facts": [
+    {
+      "fact_type": "expense_ratio",
+      "value": "2.38%",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "nav",
+      "value": "₹11.04",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "aum",
+      "value": "₹38.80 Cr",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "min_sip",
+      "value": "₹2000",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "min_lumpsum",
+      "value": "₹10000",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "exit_load",
+      "value": "Exit load of 1%, if redeemed within 1 Year",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "benchmark",
+      "value": "NIFTY Smallcap 250 Total Return Index",
+      "confidence": "HIGH",
+      "normalized": true
+    },
+    {
+      "fact_type": "fund_manager",
+      "value": "of The Wealth Company Small Cap Fund Direct Growth fund",
+      "confidence": "MEDIUM",
+      "normalized": true
+    },
+    {
+      "fact_type": "risk_level",
+      "value": "Mutual Funds screener Filter funds based on",
+      "confidence": "MEDIUM",
+      "normalized": true
+    }
+  ],
+  "rejected_facts": [],
+  "error": null
+}
