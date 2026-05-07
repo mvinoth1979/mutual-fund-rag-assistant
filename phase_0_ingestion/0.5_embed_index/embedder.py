@@ -17,6 +17,7 @@ import logging
 import math
 import os
 import sqlite3
+import time
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -36,7 +37,9 @@ DATA_STRUCTURED = Path(os.getenv("DATA_STRUCTURED", "./data/5_structured_facts")
 DATA_CHROMA = Path(os.getenv("DATA_CHROMA", "./data/6_chroma_index"))
 
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
-EXPECTED_DIM = 1024
+GEMINI_EMBEDDING_MODEL = "models/gemini-embedding-001"
+EXPECTED_DIM = 3072
+GEMINI_DIM = 3072
 BATCH_SIZE = 16
 
 # =============================================================================
@@ -90,34 +93,68 @@ class EmbedManifestEntry:
 # =============================================================================
 
 
+class GeminiEmbedder:
+    def __init__(self, model_name: str = GEMINI_EMBEDDING_MODEL):
+        import google.generativeai as genai
+        self.model_name = model_name
+        api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY must be set for GeminiEmbedder")
+        genai.configure(api_key=api_key)
+        self.genai = genai
+        logger.info(f"Using Google Gemini Embeddings: {model_name}")
+
+    def embed(self, texts: List[str], task_type: str = "retrieval_document") -> List[List[float]]:
+        if not texts:
+            return []
+        
+        # Google API has limits on batch size or request size
+        results = []
+        batch_size = 10 # Optimized for free tier
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i : i + batch_size]
+            try:
+                response = self.genai.embed_content(
+                    model=self.model_name,
+                    content=batch,
+                    task_type=task_type
+                )
+                # Google returns a list of embeddings under the 'embedding' key
+                results.extend(response["embedding"])
+                time.sleep(5) # Delay inside batch loop
+            except Exception as e:
+                logger.error(f"Gemini Embedding error: {e}")
+                raise e
+        return results
+
 class BGEEmbedder:
     def __init__(self, model_name: str = EMBEDDING_MODEL):
         self.model_name = model_name
-        self.hf_token = os.getenv("HUGGINGFACE_API_KEY")
-        self.use_api = self.hf_token is not None or os.getenv("VERCEL") == "1"
         self.model = None
-
-        if self.use_api:
-            logger.info(f"Using Hugging Face Inference API for embeddings: {model_name}")
-            if not self.hf_token:
-                logger.warning("HUGGINGFACE_API_KEY not found. API calls may fail if not authorized.")
+        
+        # Hard-switch to Gemini as HF is returning 404 for this model
+        self.use_gemini = (os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")) is not None
+        if self.use_gemini:
+            self.gemini = GeminiEmbedder()
+            self.dim = GEMINI_DIM
+            logger.info("Using Gemini for embeddings (HF disabled due to 404 errors).")
         else:
+            # Local fallback (only for development)
             try:
                 from sentence_transformers import SentenceTransformer
                 logger.info(f"Loading local embedding model: {model_name}")
                 self.model = SentenceTransformer(model_name)
-                dim = self.model.get_embedding_dimension()
-                if dim != EXPECTED_DIM:
-                    raise ValueError(f"Model dimension mismatch: expected {EXPECTED_DIM}, got {dim}")
-                logger.info(f"Model loaded. Dimension: {dim}")
+                self.dim = self.model.get_embedding_dimension()
+                self.use_gemini = False
             except ImportError:
-                logger.error("sentence-transformers not installed. Switching to API mode.")
-                self.use_api = True
+                raise ValueError("GEMINI_API_KEY must be set for production embeddings.")
 
-    def embed(self, texts: List[str]) -> List[List[float]]:
-        """Generate embeddings for a batch of texts."""
+    def embed(self, texts: List[str], task_type: str = "retrieval_query") -> List[List[float]]:
         if not texts:
             return []
+        
+        if self.use_gemini:
+            return self.gemini.embed(texts, task_type=task_type)
         
         if self.use_api:
             return self._embed_via_api(texts)
@@ -132,38 +169,50 @@ class BGEEmbedder:
         import httpx
         import time
 
-        api_url = f"https://api-inference.huggingface.co/models/{self.model_name}"
+        # Try multiple endpoints as HF can be flaky
+        endpoints = [
+            f"https://api-inference.huggingface.co/models/{self.model_name}",
+            f"https://api-inference.huggingface.co/pipeline/feature-extraction/{self.model_name}"
+        ]
+        
         headers = {}
         if self.hf_token:
             headers["Authorization"] = f"Bearer {self.hf_token}"
 
         results = []
-        # Process in smaller batches to avoid API payload limits
         batch_size = 8
         for i in range(0, len(texts), batch_size):
             batch = texts[i : i + batch_size]
             
-            # Simple retry logic for 503 (model loading)
-            for attempt in range(3):
+            success = False
+            for endpoint in endpoints:
+                if success: break
+                for attempt in range(2):
+                    try:
+                        response = httpx.post(
+                            endpoint, 
+                            headers=headers, 
+                            json={"inputs": batch, "options": {"wait_for_model": True}},
+                            timeout=30.0
+                        )
+                        if response.status_code == 200:
+                            batch_embeddings = response.json()
+                            results.extend(batch_embeddings)
+                            success = True
+                            break
+                        elif response.status_code == 503:
+                            time.sleep(5)
+                    except:
+                        time.sleep(1)
+            
+            if not success:
+                # If HF fails, try Gemini as last resort if available
                 try:
-                    response = httpx.post(
-                        api_url, 
-                        headers=headers, 
-                        json={"inputs": batch, "options": {"wait_for_model": True}},
-                        timeout=30.0
-                    )
-                    if response.status_code == 200:
-                        batch_embeddings = response.json()
-                        results.extend(batch_embeddings)
-                        break
-                    elif response.status_code == 503:
-                        logger.warning(f"HF API 503 (Model loading). Waiting... (Attempt {attempt+1})")
-                        time.sleep(5)
-                    else:
-                        raise Exception(f"HF API error {response.status_code}: {response.text}")
-                except Exception as e:
-                    if attempt == 2: raise e
-                    time.sleep(2)
+                    logger.warning("HF API failed. Trying Gemini fallback...")
+                    gemini = GeminiEmbedder()
+                    return gemini.embed(texts)
+                except:
+                    raise Exception("All embedding backends failed.")
         
         return results
 
@@ -217,13 +266,15 @@ class ChromaStore:
         import chromadb
 
         self.persist_dir = Path(persist_dir)
-        self.persist_dir.mkdir(parents=True, exist_ok=True)
-        self.client = chromadb.PersistentClient(path=str(self.persist_dir))
-        self.collection = self.client.get_or_create_collection(
-            name="mutual_fund_chunks",
-            metadata={"hnsw:space": "cosine"},
-        )
-        logger.info(f"Chroma collection ready at {self.persist_dir}")
+        # We use SimpleVectorStore for production, Chroma is optional
+        self.collection = None
+        # self.persist_dir.mkdir(parents=True, exist_ok=True)
+        # self.client = chromadb.PersistentClient(path=str(self.persist_dir))
+        # self.collection = self.client.get_or_create_collection(
+        #     name="mutual_fund_chunks",
+        #     metadata={"hnsw:space": "cosine"},
+        # )
+        # logger.info(f"Chroma collection ready at {self.persist_dir}")
 
     def upsert(self, records: List[EmbedResult]) -> int:
         """Upsert embedding records into Chroma."""
@@ -426,11 +477,18 @@ def run_embed_phase() -> Dict[str, Any]:
 
         # 2. Batch embed
         texts = [c.text for c in chunks]
-        raw_embeddings = embedder.embed(texts)
+        raw_embeddings = embedder.embed(texts, task_type="retrieval_document")
+        time.sleep(2) # Rate limiting between docs
 
         doc_records: List[EmbedResult] = []
         rejected = 0
         for chunk, emb in zip(chunks, raw_embeddings):
+            if len(emb) != embedder.dim:
+                logger.error(f"Validation failed for {chunk.chunk_id}: Dimension mismatch: expected {embedder.dim}, got {len(emb)}")
+                rejected += 1
+                manifest["rejected"] += 1
+                continue
+
             normalized = embedder.l2_normalize(emb)
             error = validator.validate(normalized, chunk.chunk_id)
             if error:
@@ -454,7 +512,7 @@ def run_embed_phase() -> Dict[str, Any]:
 
         # 3. Upsert to Chroma
         if doc_records:
-            chroma.upsert(doc_records)
+            # chroma.upsert(doc_records)
             all_records.extend(doc_records)
 
         entry.chunks_embedded = len(doc_records)
