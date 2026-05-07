@@ -1,8 +1,0 @@
-This file confirms that the data folder is being synchronized to GitHub.
-Local Time: 2026-05-07 13:54
-Current branch: master
-Tracked files in data/:
-- 1_extracted_facts/extract_manifest.json
-- 3_chunks/*.jsonl
-- 4_embeddings/embeddings.json
-- 5_structured_facts/facts.db
