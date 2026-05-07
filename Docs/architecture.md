@@ -133,11 +133,12 @@ When the scheduler is invoked (Cron or Manual), it executes a sequential pipelin
 
 #### 1.2 Intent Classification
 | Input | Sanitized query |
-| Output | `FACTUAL` / `ADVISORY` / `UNCLEAR` |
-| Logic | Rule-based keyword classifier (not ML) |
+| Output | `FACTUAL` / `ADVISORY` / `URL_ADDITION` / `UNCLEAR` |
+| Logic | Rule-based keyword and pattern classifier |
 | Advisory Triggers | `should`, `better`, `best`, `recommend`, `safe`, `outperform`, `invest now`, `buy`, `sell` |
 | Factual Triggers | `what is`, `expense ratio`, `exit load`, `minimum sip`, `benchmark`, `riskometer` |
-| Enforcement | `UNCLEAR` defaults to `ADVISORY` (safe default); score ≥ 0.5 → refusal |
+| URL Triggers | Valid URL pattern starting with `http://` or `https://` |
+| Enforcement | `URL_ADDITION` triggers immediate Phase 0-7 execution (see 1.4); `UNCLEAR` defaults to `ADVISORY` |
 | Failure | Timeout → default to `ADVISORY` |
 
 #### 1.3 Refusal Generation (Advisory Path)
@@ -145,6 +146,13 @@ When the scheduler is invoked (Cron or Manual), it executes a sequential pipelin
 | Output | Terminal response T2 |
 | Logic | Pre-approved template injection |
 | Enforcement | No LLM called; response assembled by orchestrator |
+
+#### 1.4 Dynamic Corpus Expansion (URL Path)
+| Input | `URL_ADDITION` signal + New URL |
+| Output | Terminal response T6 (Success) or T4 (System Error) |
+| Logic | Detect URL → Append to `SourceWebsites.md` → Trigger Phase 0 to Phase 7 |
+| Enforcement | URL must be reachable and return 200 OK before appending; full re-indexing must complete before T6 is returned |
+| Failure | Ingestion crash → Rollback `SourceWebsites.md` → Return T4 |
 
 ---
 
@@ -553,6 +561,7 @@ class ComplianceResult(BaseModel):
 | **T3** | Low confidence, no results, hallucination, length violation | "I do not have that information in my current sources." | N/A | Yes |
 | **T4** | System error, timeout, LLM failure | "I'm unable to answer right now. Please try again later." | N/A | Yes |
 | **T5** | All checks pass | Factual answer (1-3 sentences) | Whitelist URL | Yes |
+| **T6** | URL addition success | "New fund source added successfully. I have updated my knowledge base and am now ready to answer questions about this scheme." | New URL | Yes |
 
 ---
 

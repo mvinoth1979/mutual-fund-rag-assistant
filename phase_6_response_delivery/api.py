@@ -108,6 +108,46 @@ async def chat_endpoint(request: QueryRequest):
         p1_result = run_phase_1(query)
         logger.info(f"Phase 1 result: {p1_result}")
 
+        # --- Dynamic URL Addition Feature ---
+        if p1_result.get("intent", {}).get("classification") == "URL_ADDITION":
+            url = p1_result["sanitized_query"]
+            logger.info(f"URL Addition triggered for: {url}")
+            
+            # 1. Update SourceWebsites.md
+            source_file = PROJECT_ROOT / "SourceWebsites.md"
+            with open(source_file, "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            if url not in content:
+                with open(source_file, "a", encoding="utf-8") as f:
+                    f.write(f"\n- {url}")
+                logger.info(f"Added {url} to SourceWebsites.md")
+            else:
+                logger.info(f"URL {url} already exists in SourceWebsites.md")
+
+            # 2. Trigger Full Ingestion (Phase 0 to 7)
+            # We run this in the background or blocking? User wants to know when it's available.
+            # Blocking for now to ensure T6 means it's ready.
+            from run_ingestion import run_full_ingestion
+            try:
+                run_full_ingestion()
+                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                return ChatResponse(
+                    text="New fund source added successfully. I have updated my knowledge base and am now ready to answer questions about this scheme.",
+                    source_url=url,
+                    footer_date=today,
+                    terminal_state="T6"
+                )
+            except Exception as e:
+                logger.error(f"Ingestion failed: {e}")
+                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                return ChatResponse(
+                    text="I detected a URL but failed to ingest the data. Please ensure it's a valid mutual fund page.",
+                    source_url=None,
+                    footer_date=today,
+                    terminal_state="T4"
+                )
+
         if p1_result["blocked_by_pii"] or p1_result["terminal_response"]:
             res = p1_result["terminal_response"]
             return ChatResponse(

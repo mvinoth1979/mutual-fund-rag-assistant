@@ -3,11 +3,13 @@ from typing import List, Literal
 from pydantic import BaseModel
 
 class IntentResult(BaseModel):
-    classification: Literal["FACTUAL", "ADVISORY", "UNCLEAR"]
+    classification: Literal["FACTUAL", "ADVISORY", "URL_ADDITION", "UNCLEAR"]
     advisory_score: float
     triggers_matched: List[str] = []
 
 class IntentClassifier:
+    URL_PATTERN = r"https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+"
+    
     ADVISORY_TRIGGERS = [
         r"\bshould\b",
         r"\bbetter\b",
@@ -58,6 +60,14 @@ class IntentClassifier:
 
     def classify(self, query: str) -> IntentResult:
         query_lower = query.lower()
+
+        # 1. URL Detection (Priority)
+        if re.search(self.URL_PATTERN, query_lower):
+            return IntentResult(
+                classification="URL_ADDITION",
+                advisory_score=0.0,
+                triggers_matched=["URL_DETECTED"]
+            )
 
         advisory_hits = 0
         matched_triggers: List[str] = []

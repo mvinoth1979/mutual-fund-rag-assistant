@@ -128,6 +128,8 @@ def main():
         # Unclear
         "Tell me about returns",
         "Funds",
+        # URL Addition
+        "https://groww.in/mutual-funds/nippon-india-multi-cap-fund-direct-growth",
     ]
 
     print("=" * 70)
