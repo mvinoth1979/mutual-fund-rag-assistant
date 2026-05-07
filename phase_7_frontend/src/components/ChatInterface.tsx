@@ -22,7 +22,7 @@ export function ChatInterface() {
     setIsLoading(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/chat';
+      const apiUrl = '/api/chat';
       const res = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
