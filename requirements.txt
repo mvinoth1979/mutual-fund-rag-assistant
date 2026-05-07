@@ -4,13 +4,11 @@ pydantic==2.13.3
 pydantic-settings
 python-dotenv
 chromadb
-sentence-transformers
 google-generativeai
 groq
 beautifulsoup4
 curl_cffi
 httpx
 numpy
-pandas
 jinja2
 python-multipart

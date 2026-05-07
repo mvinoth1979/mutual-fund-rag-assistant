@@ -92,25 +92,80 @@ class EmbedManifestEntry:
 
 class BGEEmbedder:
     def __init__(self, model_name: str = EMBEDDING_MODEL):
-        from sentence_transformers import SentenceTransformer
+        self.model_name = model_name
+        self.hf_token = os.getenv("HUGGINGFACE_API_KEY")
+        self.use_api = self.hf_token is not None or os.getenv("VERCEL") == "1"
+        self.model = None
 
-        logger.info(f"Loading embedding model: {model_name}")
-        self.model = SentenceTransformer(model_name)
-        dim = self.model.get_embedding_dimension()
-        if dim != EXPECTED_DIM:
-            raise ValueError(
-                f"Model dimension mismatch: expected {EXPECTED_DIM}, got {dim}"
-            )
-        logger.info(f"Model loaded. Dimension: {dim}")
+        if self.use_api:
+            logger.info(f"Using Hugging Face Inference API for embeddings: {model_name}")
+            if not self.hf_token:
+                logger.warning("HUGGINGFACE_API_KEY not found. API calls may fail if not authorized.")
+        else:
+            try:
+                from sentence_transformers import SentenceTransformer
+                logger.info(f"Loading local embedding model: {model_name}")
+                self.model = SentenceTransformer(model_name)
+                dim = self.model.get_embedding_dimension()
+                if dim != EXPECTED_DIM:
+                    raise ValueError(f"Model dimension mismatch: expected {EXPECTED_DIM}, got {dim}")
+                logger.info(f"Model loaded. Dimension: {dim}")
+            except ImportError:
+                logger.error("sentence-transformers not installed. Switching to API mode.")
+                self.use_api = True
 
     def embed(self, texts: List[str]) -> List[List[float]]:
         """Generate embeddings for a batch of texts."""
         if not texts:
             return []
-        embeddings = self.model.encode(
-            texts, convert_to_numpy=True, show_progress_bar=False
-        )
-        return [emb.tolist() for emb in embeddings]
+        
+        if self.use_api:
+            return self._embed_via_api(texts)
+        else:
+            embeddings = self.model.encode(
+                texts, convert_to_numpy=True, show_progress_bar=False
+            )
+            return [emb.tolist() for emb in embeddings]
+
+    def _embed_via_api(self, texts: List[str]) -> List[List[float]]:
+        """Call Hugging Face Inference API for embeddings."""
+        import httpx
+        import time
+
+        api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{self.model_name}"
+        headers = {}
+        if self.hf_token:
+            headers["Authorization"] = f"Bearer {self.hf_token}"
+
+        results = []
+        # Process in smaller batches to avoid API payload limits
+        batch_size = 8
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i : i + batch_size]
+            
+            # Simple retry logic for 503 (model loading)
+            for attempt in range(3):
+                try:
+                    response = httpx.post(
+                        api_url, 
+                        headers=headers, 
+                        json={"inputs": batch, "options": {"wait_for_model": True}},
+                        timeout=30.0
+                    )
+                    if response.status_code == 200:
+                        batch_embeddings = response.json()
+                        results.extend(batch_embeddings)
+                        break
+                    elif response.status_code == 503:
+                        logger.warning(f"HF API 503 (Model loading). Waiting... (Attempt {attempt+1})")
+                        time.sleep(5)
+                    else:
+                        raise Exception(f"HF API error {response.status_code}: {response.text}")
+                except Exception as e:
+                    if attempt == 2: raise e
+                    time.sleep(2)
+        
+        return results
 
     @staticmethod
     def l2_normalize(embedding: List[float]) -> List[float]:
