@@ -38,9 +38,14 @@ dist-ssr/
 
 # Project specific
 data/0_raw_html/
+data/1_extracted_facts/
+data/2_normalized_text/
+data/3_chunks/
+data/4_embeddings/
 data/7_audit_logs/
 data/8_query_logs/
 data/9_response_cache/
+data/rollback_backups/
 
 # We might want to keep the processed data for deployment, 
 # but usually it's better to process it or use an external store.
