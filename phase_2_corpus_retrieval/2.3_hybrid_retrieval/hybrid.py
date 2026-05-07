@@ -31,6 +31,46 @@ class RetrievalCandidate(BaseModel):
     rank: int
     retriever: str
 
+class SimpleVectorStore:
+    """Lightweight in-memory vector store for production (replaces ChromaDB)."""
+    def __init__(self, embeddings_path: Path):
+        self.records = []
+        if embeddings_path.exists():
+            with open(embeddings_path, "r", encoding="utf-8") as f:
+                self.records = json.load(f)
+        logger.info(f"SimpleVectorStore loaded {len(self.records)} records.")
+
+    def query(self, query_embedding: List[float], n_results: int, doc_ids: Optional[List[str]] = None) -> Dict:
+        """Perform cosine similarity search."""
+        q = np.array(query_embedding)
+        candidates = []
+        
+        for r in self.records:
+            if doc_ids and r["doc_id"] not in doc_ids:
+                continue
+            
+            # Cosine similarity for L2-normalized vectors is just dot product
+            sim = np.dot(q, np.array(r["embedding"]))
+            candidates.append({
+                "id": r["chunk_id"],
+                "metadata": {
+                    "doc_id": r["doc_id"],
+                    "source_url": r["source_url"],
+                    "chunk_type": r["chunk_type"]
+                },
+                "distance": 1.0 - sim
+            })
+        
+        # Sort by distance (ascending)
+        candidates.sort(key=lambda x: x["distance"])
+        top_k = candidates[:n_results]
+        
+        return {
+            "ids": [[c["id"] for c in top_k]],
+            "distances": [[c["distance"] for c in top_k]],
+            "metadatas": [[c["metadata"] for c in top_k]]
+        }
+
 class HybridRetriever:
     RRF_K = 60
     DENSE_TOPK = 10
@@ -38,15 +78,13 @@ class HybridRetriever:
 
     def __init__(
         self,
-        chroma_dir: Path = PROJECT_ROOT / "data" / "6_chroma_index",
+        embeddings_path: Path = PROJECT_ROOT / "data" / "4_embeddings" / "embeddings.json",
         chunks_dir: Path = PROJECT_ROOT / "data" / "3_chunks",
         sqlite_db: Path = PROJECT_ROOT / "data" / "5_structured_facts" / "facts.db",
     ):
-        import chromadb
         from rank_bm25 import BM25Okapi
 
-        self.chroma_client = chromadb.PersistentClient(path=str(chroma_dir))
-        self.collection = self.chroma_client.get_collection("mutual_fund_chunks")
+        self.vector_store = SimpleVectorStore(embeddings_path)
         self.chunks = self._load_chunks(chunks_dir)
         self.chunk_index = {c["chunk_id"]: c for c in self.chunks}
         tokenized_corpus = [self._tokenize(c["text"]) for c in self.chunks]
@@ -56,7 +94,7 @@ class HybridRetriever:
         
         self.DOC_ID_TO_NAME = self._load_doc_names()
 
-        logger.info(f"Hybrid retriever ready. Chunks={len(self.chunks)} Chroma={self.collection.count()}")
+        logger.info(f"Hybrid retriever ready. Chunks={len(self.chunks)}")
 
     def _load_doc_names(self) -> Dict[str, str]:
         manifest_path = PROJECT_ROOT / "data" / "1_extracted_facts" / "extract_manifest.json"
@@ -91,12 +129,10 @@ class HybridRetriever:
     def _dense_search(self, query: str, doc_ids: List[str]) -> List[Tuple[str, float]]:
         embedding = self.embedder.embed([query])[0]
         embedding = BGEEmbedder.l2_normalize(embedding)
-        where_filter = {"doc_id": {"$in": doc_ids}} if doc_ids else None
-        results = self.collection.query(
-            query_embeddings=[embedding],
+        results = self.vector_store.query(
+            query_embedding=embedding,
             n_results=self.DENSE_TOPK,
-            where=where_filter,
-            include=["metadatas", "distances"],
+            doc_ids=doc_ids
         )
         candidates: List[Tuple[str, float]] = []
         if results["ids"] and results["ids"][0]:

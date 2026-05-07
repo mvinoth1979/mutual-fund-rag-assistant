@@ -3,7 +3,6 @@ uvicorn==0.24.0
 pydantic==2.13.3
 pydantic-settings
 python-dotenv
-chromadb
 google-generativeai
 groq
 beautifulsoup4
