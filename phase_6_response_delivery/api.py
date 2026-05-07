@@ -130,12 +130,13 @@ async def chat_endpoint(request: QueryRequest):
 
             # Security Guardrail 2: Admin Password Protection
             ADMIN_PASSWORD = os.getenv("ADMIN_INGESTION_PASSWORD", "12345")
-            # Look for "Password: XXX" or just "XXX" in the query
-            password_match = re.search(r"Password:\s*(\S+)", query_text, re.IGNORECASE)
+            
+            # Robust password detection (handles "password: XXX", "pw XXX", "password XXX")
+            password_match = re.search(r"(?:password|pw|pass)[:\s]+(\S+)", query_text, re.IGNORECASE)
             provided_password = password_match.group(1) if password_match else ""
             
             if provided_password != ADMIN_PASSWORD:
-                logger.warning("BLOCKED: Ingestion attempted with incorrect or missing password.")
+                logger.warning(f"BLOCKED: Ingestion attempted. Match found: {password_match is not None}")
                 return ChatResponse(
                     text="Authentication Required: Please provide the admin password to add new sources (e.g., 'Add URL: [link] Password: XXX').",
                     source_url=None,
