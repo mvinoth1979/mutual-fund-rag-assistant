@@ -150,8 +150,8 @@ When the scheduler is invoked (Cron or Manual), it executes a sequential pipelin
 #### 1.4 Dynamic Corpus Expansion (URL Path)
 | Input | `URL_ADDITION` signal + New URL |
 | Output | Terminal response T6 (Success) or T4 (System Error) |
-| Logic | Detect URL → Append to `SourceWebsites.md` → Trigger Phase 0 to Phase 7 |
-| Enforcement | URL must be reachable and return 200 OK before appending; full re-indexing must complete before T6 is returned |
+| Logic | Detect URL → Append to `SourceWebsites.md` → **Push to GitHub (requires `GITHUB_TOKEN`)** → Trigger Phase 0 to Phase 7 |
+| Enforcement | URL must be reachable and return 200 OK before appending; `GITHUB_TOKEN` must be present for persistence across redeploys; full re-indexing must complete before T6 is returned |
 | Failure | Ingestion crash → Rollback `SourceWebsites.md` → Return T4 |
 
 ---
