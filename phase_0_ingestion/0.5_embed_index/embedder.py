@@ -266,6 +266,10 @@ class ChromaStore:
 
     def upsert(self, records: List[EmbedResult]) -> int:
         """Upsert embedding records into Chroma."""
+        if not self.available or self.collection is None:
+            logger.warning("Chroma not available, skipping upsert.")
+            return 0
+            
         if not records:
             return 0
 
@@ -500,7 +504,7 @@ def run_embed_phase() -> Dict[str, Any]:
 
         # 3. Upsert to Chroma
         if doc_records:
-            # chroma.upsert(doc_records)
+            chroma.upsert(doc_records)
             all_records.extend(doc_records)
 
         entry.chunks_embedded = len(doc_records)

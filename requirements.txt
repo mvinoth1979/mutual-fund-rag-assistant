@@ -12,3 +12,5 @@ numpy
 jinja2
 python-multipart
 rank-bm25
+chromadb
+sentence-transformers
