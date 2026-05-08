@@ -139,7 +139,7 @@ class GeminiEmbedder:
         MODEL_CANDIDATES = list(dict.fromkeys(MODEL_CANDIDATES))
         
         results = []
-        batch_size = 30  # Increased batch size to reduce RPM (Requests Per Minute) usage
+        batch_size = 100  # Maximize batch size to minimize RPM usage (Gemini limit is 100)
         for i in range(0, len(texts), batch_size):
             batch = texts[i : i + batch_size]
             success = False
@@ -189,6 +189,34 @@ class GeminiEmbedder:
             
             time.sleep(5) # Steady delay between batches to stay under free-tier RPM limits
         return results
+
+    def embed_incremental(self, chunks: List[Dict], embeddings_path: Path) -> List[Dict]:
+        """Only embed chunks that are not already in the stored index."""
+        existing_records = []
+        if embeddings_path.exists():
+            try:
+                with open(embeddings_path, "r", encoding="utf-8") as f:
+                    existing_records = json.load(f)
+            except:
+                existing_records = []
+        
+        existing_ids = {r["chunk_id"] for r in existing_records}
+        new_chunks = [c for c in chunks if c["chunk_id"] not in existing_ids]
+        
+        if not new_chunks:
+            logger.info("No new chunks to embed. Returning existing index.")
+            return existing_records
+        
+        logger.info(f"Incremental embedding: {len(new_chunks)} new chunks found out of {len(chunks)} total.")
+        
+        new_texts = [c["text"] for c in new_chunks]
+        new_embeddings = self.embed(new_texts)
+        
+        for chunk, emb in zip(new_chunks, new_embeddings):
+            chunk["embedding"] = emb
+            existing_records.append(chunk)
+            
+        return existing_records
 
 class BGEEmbedder:
     def __init__(self, model_name: str = EMBEDDING_MODEL):
@@ -462,7 +490,20 @@ def run_embed_phase() -> Dict[str, Any]:
         "results": [],
     }
 
-    all_records: List[EmbedResult] = []
+    # Load existing embeddings for incremental processing
+    embeddings_file = DATA_EMBEDDINGS / "embeddings.json"
+    if embeddings_file.exists():
+        try:
+            with open(embeddings_file, "r", encoding="utf-8") as f:
+                all_records = [EmbedResult(**r) for r in json.load(f)]
+            logger.info(f"Loaded {len(all_records)} existing embeddings for incremental processing.")
+        except Exception as e:
+            logger.warning(f"Failed to load existing embeddings: {e}. Starting fresh.")
+            all_records = []
+    else:
+        all_records = []
+        
+    existing_chunk_ids = {r.chunk_id for r in all_records}
 
     chunk_files = sorted(DATA_CHUNKS.glob("DOC-*_chunks.jsonl"))
     if not chunk_files:
@@ -495,49 +536,63 @@ def run_embed_phase() -> Dict[str, Any]:
                     )
 
         manifest["total_chunks"] += len(chunks)
+        
+        # Incremental filter
+        new_chunks = [c for c in chunks if c.chunk_id not in existing_chunk_ids]
+        if not new_chunks:
+            logger.info(f"Skipping {doc_id} (already fully embedded)")
+            # Add existing records for this doc to results for the manifest
+            doc_existing = [r for r in all_records if r.doc_id == doc_id]
+            entry.chunks_embedded = len(doc_existing)
+            manifest["embedded"] += len(doc_existing)
+            # Proceed to structured facts as they are light and should be fresh
+        else:
+            logger.info(f"Embedding {len(new_chunks)} new chunks for {doc_id} ...")
+            # 2. Batch embed
+            texts = [c.text for c in new_chunks]
+            raw_embeddings = embedder.embed(texts, task_type="retrieval_document")
+            time.sleep(2) # Rate limiting between docs
 
-        # 2. Batch embed
-        texts = [c.text for c in chunks]
-        raw_embeddings = embedder.embed(texts, task_type="retrieval_document")
-        time.sleep(2) # Rate limiting between docs
+            doc_records: List[EmbedResult] = []
+            rejected = 0
+            for chunk, emb in zip(new_chunks, raw_embeddings):
+                if len(emb) != embedder.dim:
+                    logger.error(f"Validation failed for {chunk.chunk_id}: Dimension mismatch: expected {embedder.dim}, got {len(emb)}")
+                    rejected += 1
+                    manifest["rejected"] += 1
+                    continue
 
-        doc_records: List[EmbedResult] = []
-        rejected = 0
-        for chunk, emb in zip(chunks, raw_embeddings):
-            if len(emb) != embedder.dim:
-                logger.error(f"Validation failed for {chunk.chunk_id}: Dimension mismatch: expected {embedder.dim}, got {len(emb)}")
-                rejected += 1
-                manifest["rejected"] += 1
-                continue
+                normalized = embedder.l2_normalize(emb)
+                error = validator.validate(normalized, chunk.chunk_id, embedder.dim)
+                if error:
+                    logger.error(f"Validation failed for {chunk.chunk_id}: {error}")
+                    rejected += 1
+                    manifest["rejected"] += 1
+                    continue
 
-            normalized = embedder.l2_normalize(emb)
-            error = validator.validate(normalized, chunk.chunk_id, embedder.dim)
-            if error:
-                logger.error(f"Validation failed for {chunk.chunk_id}: {error}")
-                rejected += 1
-                manifest["rejected"] += 1
-                continue
-
-            norm = float(np.linalg.norm(np.array(normalized, dtype=np.float32)))
-            doc_records.append(
-                EmbedResult(
-                    chunk_id=chunk.chunk_id,
-                    doc_id=chunk.doc_id,
-                    source_url=chunk.source_url,
-                    chunk_type=chunk.chunk_type,
-                    text=chunk.text,
-                    embedding=normalized,
-                    l2_norm=norm,
+                norm = float(np.linalg.norm(np.array(normalized, dtype=np.float32)))
+                doc_records.append(
+                    EmbedResult(
+                        chunk_id=chunk.chunk_id,
+                        doc_id=chunk.doc_id,
+                        source_url=chunk.source_url,
+                        chunk_type=chunk.chunk_type,
+                        text=chunk.text,
+                        embedding=normalized,
+                        l2_norm=norm,
+                    )
                 )
-            )
 
-        # 3. Upsert to Chroma
-        if doc_records:
-            chroma.upsert(doc_records)
-            all_records.extend(doc_records)
+            # 3. Upsert to Chroma
+            if doc_records:
+                chroma.upsert(doc_records)
+                all_records.extend(doc_records)
 
-        entry.chunks_embedded = len(doc_records)
-        manifest["embedded"] += len(doc_records)
+            entry.chunks_embedded = len(doc_records)
+            manifest["embedded"] += len(doc_records)
+            
+            if rejected > 0:
+                entry.error = f"{rejected} chunks rejected"
 
         # 4. Load structured facts into SQLite
         facts_file = DATA_NORMALIZED / f"{doc_id}_typed_facts.json"
@@ -548,9 +603,6 @@ def run_embed_phase() -> Dict[str, Any]:
             manifest["facts_stored"] += fact_count
         else:
             logger.warning(f"Typed facts file not found: {facts_file}")
-
-        if rejected > 0:
-            entry.error = f"{rejected} chunks rejected"
 
         manifest["results"].append(
             {
