@@ -37,7 +37,7 @@ DATA_STRUCTURED = Path(os.getenv("DATA_STRUCTURED", "./data/5_structured_facts")
 DATA_CHROMA = Path(os.getenv("DATA_CHROMA", "./data/6_chroma_index"))
 
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
-GEMINI_EMBEDDING_MODEL = "models/embedding-001"
+GEMINI_EMBEDDING_MODEL = "models/text-embedding-004"
 EXPECTED_DIM = 1024
 GEMINI_DIM = 768
 BATCH_SIZE = 16
@@ -96,26 +96,47 @@ class EmbedManifestEntry:
 class GeminiEmbedder:
     def __init__(self, model_name: str = GEMINI_EMBEDDING_MODEL):
         import google.generativeai as genai
-        self.model_name = model_name
         api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         if not api_key:
             raise ValueError("GOOGLE_API_KEY or GEMINI_API_KEY must be set for GeminiEmbedder")
         genai.configure(api_key=api_key)
         self.genai = genai
-        logger.info(f"Using Google Gemini Embeddings: {model_name}")
+        
+        self.model_name = model_name
+        
+        # Auto-detect available models
+        try:
+            available_models = [m.name for m in self.genai.list_models() if 'embedContent' in m.supported_generation_methods]
+            if available_models:
+                # Prioritize text-embedding-004 or the requested model if available
+                if model_name in available_models:
+                    self.model_name = model_name
+                elif "models/text-embedding-004" in available_models:
+                    self.model_name = "models/text-embedding-004"
+                else:
+                    self.model_name = available_models[0]
+                logger.info(f"Gemini auto-detected working model: {self.model_name}")
+            else:
+                logger.warning("No models supporting 'embedContent' found. Falling back to default list.")
+        except Exception as e:
+            logger.warning(f"Failed to list Gemini models: {e}. Using default candidate list.")
 
     def embed(self, texts: List[str], task_type: str = "retrieval_document") -> List[List[float]]:
         if not texts:
             return []
         
         # Models found in your Railway logs
-        MODEL_CANDIDATES = [
-            "models/gemini-embedding-001",
+        MODEL_CANDIDATES = [self.model_name] if self.model_name else []
+        MODEL_CANDIDATES.extend([
             "models/text-embedding-004",
-            "models/embedding-001",
+            "models/gemini-embedding-001",
             "text-embedding-004",
+            "gemini-embedding-001",
+            "models/embedding-001",
             "embedding-001"
-        ]
+        ])
+        # Deduplicate while preserving order
+        MODEL_CANDIDATES = list(dict.fromkeys(MODEL_CANDIDATES))
         
         results = []
         batch_size = 10
@@ -137,6 +158,7 @@ class GeminiEmbedder:
                     self.model_name = model_name 
                     break
                 except Exception as e:
+                    last_err = e
                     logger.warning(f"Candidate {model_name} failed with task_type: {str(e)}")
                     # If task_type is the problem, try without it
                     try:
@@ -262,7 +284,14 @@ class ChromaStore:
             return
 
         self.persist_dir = Path(persist_dir)
-        self.collection = None
+        try:
+            self.client = chromadb.PersistentClient(path=str(self.persist_dir))
+            self.collection = self.client.get_or_create_collection("mutual_fund_chunks")
+            logger.info(f"Chroma initialized at {self.persist_dir}")
+        except Exception as e:
+            logger.error(f"Failed to initialize Chroma: {e}")
+            self.available = False
+            self.collection = None
 
     def upsert(self, records: List[EmbedResult]) -> int:
         """Upsert embedding records into Chroma."""

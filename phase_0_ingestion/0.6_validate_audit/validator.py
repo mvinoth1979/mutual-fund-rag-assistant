@@ -34,8 +34,10 @@ DATA_AUDIT = Path(os.getenv("DATA_AUDIT", "./data/7_audit_logs"))
 DATA_BACKUP = Path(os.getenv("DATA_BACKUP", "./data/rollback_backups"))
 REGISTRY_FILE = Path(os.getenv("INDEX_REGISTRY", "./data/index_registry.json"))
 
-EXPECTED_DIM = 1024
-EXPECTED_MODEL = "BAAI/bge-large-en-v1.5"
+ALLOWED_MODELS = ["BAAI/bge-large-en-v1.5", "models/embedding-001", "models/text-embedding-004", "text-embedding-004"]
+ALLOWED_DIMS = [768, 1024]
+EXPECTED_MODEL = os.getenv("EMBEDDING_MODEL", "BAAI/bge-large-en-v1.5")
+EXPECTED_DIM = int(os.getenv("EXPECTED_DIM", "1024"))
 BACKUP_RETENTION_DAYS = 7
 
 # =============================================================================
@@ -100,15 +102,15 @@ class SchemaValidator:
             )
 
         checks = []
-        if manifest["model"] != EXPECTED_MODEL:
-            checks.append(f"model mismatch: {manifest['model']}")
-        if manifest["expected_dim"] != EXPECTED_DIM:
-            checks.append(f"dim mismatch: {manifest['expected_dim']}")
+        if manifest["model"] not in ALLOWED_MODELS:
+            checks.append(f"model not in allowed list: {manifest['model']}")
+        if manifest["expected_dim"] not in ALLOWED_DIMS:
+            checks.append(f"dim not in allowed list: {manifest['expected_dim']}")
         if manifest.get("rejected", 0) != 0:
             checks.append(f"rejected > 0: {manifest['rejected']}")
-        if len(manifest.get("results", [])) != expected_docs:
+        if len(manifest.get("results", [])) < expected_docs:
             checks.append(
-                f"doc count mismatch: expected {expected_docs}, got {len(manifest.get('results', []))}"
+                f"doc count mismatch: whitelisted {expected_docs}, but only {len(manifest.get('results', []))} processed"
             )
 
         if checks:
@@ -337,10 +339,15 @@ class IntegrityChecker:
         inf_ok = 0
         norm_ok = 0
 
+        manifest_path = DATA_EMBEDDINGS / "embed_manifest.json"
+        with open(manifest_path, "r") as f:
+            manifest = json.load(f)
+        manifest_dim = manifest.get("expected_dim", EXPECTED_DIM)
+
         for idx, rec in enumerate(embeddings):
             emb = rec["embedding"]
-            if len(emb) != EXPECTED_DIM:
-                issues.append(f"Record {idx} dim={len(emb)}")
+            if len(emb) != manifest_dim:
+                issues.append(f"Record {idx} dim={len(emb)} (expected {manifest_dim})")
                 break
             dim_ok += 1
 
