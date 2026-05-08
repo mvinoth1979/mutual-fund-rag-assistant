@@ -128,6 +128,15 @@ class HybridRetriever:
 
     def _dense_search(self, query: str, doc_ids: List[str]) -> List[Tuple[str, float]]:
         embedding = self.embedder.embed([query])[0]
+        
+        # Matryoshka alignment: truncate or pad to match stored dimensions
+        if len(embedding) > EXPECTED_DIM:
+            logger.info(f"Truncating query embedding from {len(embedding)} to {EXPECTED_DIM}")
+            embedding = embedding[:EXPECTED_DIM]
+        elif len(embedding) < EXPECTED_DIM:
+            logger.warning(f"Padding query embedding from {len(embedding)} to {EXPECTED_DIM}")
+            embedding = embedding + [0.0] * (EXPECTED_DIM - len(embedding))
+            
         embedding = BGEEmbedder.l2_normalize(embedding)
         results = self.vector_store.query(
             query_embedding=embedding,
