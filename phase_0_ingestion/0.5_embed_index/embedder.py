@@ -139,56 +139,55 @@ class GeminiEmbedder:
         MODEL_CANDIDATES = list(dict.fromkeys(MODEL_CANDIDATES))
         
         results = []
-        batch_size = 10
+        batch_size = 30  # Increased batch size to reduce RPM (Requests Per Minute) usage
         for i in range(0, len(texts), batch_size):
             batch = texts[i : i + batch_size]
             success = False
             last_err = None
             
-            for model_name in MODEL_CANDIDATES:
-                try:
-                    # Force 1024 dimensions for compatibility with BGE-indexed data
-                    kwargs = {"model": model_name, "content": batch, "task_type": task_type}
-                    if "004" in model_name:
-                        kwargs["output_dimensionality"] = 1024
-                        
-                    response = self.genai.embed_content(**kwargs)
-                    results.extend(response["embedding"])
-                    success = True
-                    self.model_name = model_name 
-                    break
-                except Exception as e:
-                    last_err = e
-                    logger.warning(f"Candidate {model_name} failed with task_type: {str(e)}")
-                    # If task_type is the problem, try without it
+            import time
+            max_retries = 5
+            for attempt in range(max_retries):
+                success = False
+                last_err = None
+                
+                for model_name in MODEL_CANDIDATES:
                     try:
-                        kwargs_fb = {"model": model_name, "content": batch}
+                        # Force 1024 dimensions for compatibility with BGE-indexed data
+                        kwargs = {"model": model_name, "content": batch, "task_type": task_type}
                         if "004" in model_name:
-                            kwargs_fb["output_dimensionality"] = 1024
+                            kwargs["output_dimensionality"] = 1024
                             
-                        response = self.genai.embed_content(**kwargs_fb)
+                        response = self.genai.embed_content(**kwargs)
                         results.extend(response["embedding"])
                         success = True
-                        self.model_name = model_name
+                        self.model_name = model_name 
                         break
-                    except Exception as e2:
-                        logger.warning(f"Candidate {model_name} failed without task_type: {str(e2)}")
-                        last_err = e2
+                    except Exception as e:
+                        last_err = e
+                        if "429" in str(e) or "ResourceExhausted" in str(e):
+                            # This is a rate limit, don't try other models, just retry later
+                            break
+                        logger.warning(f"Candidate {model_name} failed: {str(e)}")
                         continue
+                
+                if success:
+                    break
+                
+                if attempt < max_retries - 1:
+                    wait_time = (2 ** attempt) * 5 # Exponential backoff: 5s, 10s, 20s...
+                    logger.info(f"Rate limited or error. Retrying batch in {wait_time}s... (Attempt {attempt+1}/{max_retries})")
+                    time.sleep(wait_time)
+                else:
+                    # DIAGNOSTIC: List available models to logs
+                    try:
+                        available_models = [m.name for m in self.genai.list_models() if 'embedContent' in m.supported_generation_methods]
+                        logger.error(f"Embedding failed after retries. Available models: {available_models}")
+                    except:
+                        pass
+                    raise last_err if last_err else ValueError("Batch embedding failed.")
             
-            if not success:
-                # DIAGNOSTIC: List available models to logs
-                try:
-                    available_models = [m.name for m in self.genai.list_models() if 'embedContent' in m.supported_generation_methods]
-                    logger.error(f"Embedding failed. Available embedding models: {available_models}")
-                except:
-                    pass
-                
-                final_err = last_err if last_err else ValueError("All embedding model candidates failed.")
-                logger.error(f"All embedding model candidates failed. Last error: {final_err}")
-                raise final_err
-                
-            time.sleep(3) # Increased delay to avoid rate limits
+            time.sleep(5) # Steady delay between batches to stay under free-tier RPM limits
         return results
 
 class BGEEmbedder:
