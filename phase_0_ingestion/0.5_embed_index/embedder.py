@@ -39,7 +39,7 @@ DATA_CHROMA = Path(os.getenv("DATA_CHROMA", "./data/6_chroma_index"))
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
 GEMINI_EMBEDDING_MODEL = "models/text-embedding-004"
 EXPECTED_DIM = 1024
-GEMINI_DIM = 768
+GEMINI_DIM = 1024  # Force 1024 to match BGE-large for hybrid compatibility
 BATCH_SIZE = 16
 
 # =============================================================================
@@ -147,12 +147,12 @@ class GeminiEmbedder:
             
             for model_name in MODEL_CANDIDATES:
                 try:
-                    # Try with task_type
-                    response = self.genai.embed_content(
-                        model=model_name,
-                        content=batch,
-                        task_type=task_type
-                    )
+                    # Force 1024 dimensions for compatibility with BGE-indexed data
+                    kwargs = {"model": model_name, "content": batch, "task_type": task_type}
+                    if "004" in model_name:
+                        kwargs["output_dimensionality"] = 1024
+                        
+                    response = self.genai.embed_content(**kwargs)
                     results.extend(response["embedding"])
                     success = True
                     self.model_name = model_name 
@@ -162,10 +162,11 @@ class GeminiEmbedder:
                     logger.warning(f"Candidate {model_name} failed with task_type: {str(e)}")
                     # If task_type is the problem, try without it
                     try:
-                        response = self.genai.embed_content(
-                            model=model_name,
-                            content=batch
-                        )
+                        kwargs_fb = {"model": model_name, "content": batch}
+                        if "004" in model_name:
+                            kwargs_fb["output_dimensionality"] = 1024
+                            
+                        response = self.genai.embed_content(**kwargs_fb)
                         results.extend(response["embedding"])
                         success = True
                         self.model_name = model_name
