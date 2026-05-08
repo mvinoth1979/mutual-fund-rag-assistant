@@ -38,7 +38,7 @@ DATA_CHROMA = Path(os.getenv("DATA_CHROMA", "./data/6_chroma_index"))
 
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
 GEMINI_EMBEDDING_MODEL = "models/embedding-001"
-EXPECTED_DIM = 768
+EXPECTED_DIM = 1024
 GEMINI_DIM = 768
 BATCH_SIZE = 16
 
@@ -150,6 +150,7 @@ class GeminiEmbedder:
                         break
                     except Exception as e2:
                         logger.warning(f"Candidate {model_name} failed without task_type: {str(e2)}")
+                        last_err = e2
                         continue
             
             if not success:
@@ -159,8 +160,10 @@ class GeminiEmbedder:
                     logger.error(f"Embedding failed. Available embedding models: {available_models}")
                 except:
                     pass
-                logger.error(f"All embedding model candidates failed. Last error: {last_err}")
-                raise last_err
+                
+                final_err = last_err if last_err else ValueError("All embedding model candidates failed.")
+                logger.error(f"All embedding model candidates failed. Last error: {final_err}")
+                raise final_err
                 
             time.sleep(3) # Increased delay to avoid rate limits
         return results
@@ -220,10 +223,10 @@ class BGEEmbedder:
 
 class EmbeddingValidator:
     @staticmethod
-    def validate(embedding: List[float], chunk_id: str) -> Optional[str]:
+    def validate(embedding: List[float], chunk_id: str, expected_dim: int) -> Optional[str]:
         """Return error string if invalid, else None."""
-        if len(embedding) != EXPECTED_DIM:
-            return f"Dimension mismatch: expected {EXPECTED_DIM}, got {len(embedding)}"
+        if len(embedding) != expected_dim:
+            return f"Dimension mismatch: expected {expected_dim}, got {len(embedding)}"
 
         arr = np.array(embedding, dtype=np.float32)
         if np.isnan(arr).any():
@@ -475,7 +478,7 @@ def run_embed_phase() -> Dict[str, Any]:
                 continue
 
             normalized = embedder.l2_normalize(emb)
-            error = validator.validate(normalized, chunk.chunk_id)
+            error = validator.validate(normalized, chunk.chunk_id, embedder.dim)
             if error:
                 logger.error(f"Validation failed for {chunk.chunk_id}: {error}")
                 rejected += 1

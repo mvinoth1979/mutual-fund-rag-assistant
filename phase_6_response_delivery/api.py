@@ -145,8 +145,6 @@ async def chat_endpoint(request: QueryRequest):
                 )
 
             # Proceed if both checks pass
-            logger.info(f"Authorized URL ingestion started for: {url}")
-            
             # 1. Update SourceWebsites.md
             source_file = PROJECT_ROOT / "SourceWebsites.md"
             with open(source_file, "r", encoding="utf-8") as f:
@@ -156,53 +154,6 @@ async def chat_endpoint(request: QueryRequest):
                 with open(source_file, "a", encoding="utf-8") as f:
                     f.write(f"\n- {url}")
                 logger.info(f"Added {url} to SourceWebsites.md")
-                
-                # --- NEW: Push to GitHub ---
-                github_token = os.environ.get("GITHUB_TOKEN")
-                if github_token:
-                    try:
-                        import subprocess
-                        
-                        # 1. Ensure git is initialized and remote is set
-                        if not (PROJECT_ROOT / ".git").exists():
-                            logger.info("Initializing git repository...")
-                            subprocess.run(["git", "init"], check=True, cwd=str(PROJECT_ROOT))
-                        
-                        # Configure git
-                        subprocess.run(["git", "config", "user.email", "bot@rag-assistant.com"], check=True, cwd=str(PROJECT_ROOT))
-                        subprocess.run(["git", "config", "user.name", "RAG Assistant Bot"], check=True, cwd=str(PROJECT_ROOT))
-                        
-                        # Set/Update remote with token
-                        repo_url = f"https://{github_token}@github.com/mvinoth1979/mutual-fund-rag-assistant.git"
-                        # Try to remove origin if it exists to avoid conflicts, then add
-                        subprocess.run(["git", "remote", "remove", "origin"], check=False, cwd=str(PROJECT_ROOT))
-                        subprocess.run(["git", "remote", "add", "origin", repo_url], check=True, cwd=str(PROJECT_ROOT))
-                        
-                        # 2. Add and commit
-                        subprocess.run(["git", "add", "SourceWebsites.md"], check=True, cwd=str(PROJECT_ROOT))
-                        # Use --allow-empty in case nothing changed (though we check url in content)
-                        subprocess.run(["git", "commit", "-m", f"Automated: added new fund source {url}"], check=True, cwd=str(PROJECT_ROOT))
-                        
-                        # 3. Detect branch and push
-                        # Railway often uses 'master' or 'main'
-                        # Try to push to both or detect
-                        try:
-                            # Try pushing to origin master (common in this repo)
-                            result = subprocess.run(["git", "push", "origin", "master"], capture_output=True, text=True, cwd=str(PROJECT_ROOT))
-                            if result.returncode != 0:
-                                logger.warning(f"Push to master failed, trying main: {result.stderr}")
-                                subprocess.run(["git", "push", "origin", "main"], check=True, cwd=str(PROJECT_ROOT))
-                            logger.info("Successfully pushed SourceWebsites.md to GitHub")
-                        except Exception as push_err:
-                            logger.error(f"Push failed: {push_err}")
-                            # Fallback: force push if it's a new init
-                            subprocess.run(["git", "push", "-f", "origin", "HEAD:master"], check=True, cwd=str(PROJECT_ROOT))
-                            logger.info("Successfully forced pushed SourceWebsites.md to GitHub")
-
-                    except Exception as git_err:
-                        logger.error(f"Git operation failed: {git_err}")
-                else:
-                    logger.warning("GITHUB_TOKEN not found. Changes to SourceWebsites.md will only be local and temporary.")
             else:
                 logger.info(f"URL {url} already exists in SourceWebsites.md")
 
