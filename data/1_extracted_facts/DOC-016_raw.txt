@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+25.05
++25.28
 %
 3Y annualised
-+0.97
++0.63
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹221.25
+NAV: 07 May '26
+₹222.64
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,27 +95,27 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹62,762
+₹63,130
 +
-4.60
+5.22
 %
 3 years
 ₹1,80,000
-₹2,20,511
+₹2,21,804
 +
-22.51
+23.22
 %
 5 years
 ₹3,00,000
-₹5,12,863
+₹5,15,786
 +
-70.95
+71.93
 %
 10 years
 ₹6,00,000
-₹18,65,888
+₹18,76,568
 +
-210.98
+212.76
 %
 Holdings (
 66
@@ -410,8 +410,8 @@ Name
 10Y
 All
 Fund returns
-+25.1%
-+27.2%
++25.3%
++27.0%
 +19.6%
 +16.7%
 Category average (
@@ -526,7 +526,7 @@ ICICI Prudential Infrastructure Direct Growth
 ICICI Prudential Quality Fund Direct Growth
 About
 ICICI Prudential Infrastructure Direct Growth
-ICICI Prudential Infrastructure Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Infrastructure Direct Growth fund. Latest NAV as of 06 May 2026 is ₹221.25.
+ICICI Prudential Infrastructure Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Infrastructure Direct Growth fund. Latest NAV as of 07 May 2026 is ₹222.64.
 The ICICI Prudential Infrastructure Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹5,000. Exit load of 1% if redeemed within 15 days
 ;
 Investment Objective

@@ -63,14 +63,14 @@ Brokerage and charges on Groww
 Blog
 1M
 All
-NAV: 06 May '26
-₹11.04
+NAV: 07 May '26
+₹11.11
 Min. for SIP
 ₹2,000
 Fund size (AUM)
 ₹38.80 Cr
 Expense ratio
-2.38%
+2.37%
 Rating
 --
 Holdings (
@@ -307,24 +307,24 @@ Name
 3Y
 Fund Size(Cr)
 Bandhan Small Cap Fund Direct Growth
-+20.15%
-+32.74%
++20.20%
++33.22%
 20,129.67
 Invesco India Smallcap Fund Direct Growth
-+18.31%
-+26.78%
++18.17%
++27.14%
 9,207.99
 Sundaram Small Cap Fund Direct Growth
-+21.00%
-+22.55%
++21.10%
++22.97%
 2,982.57
 Nippon India Small Cap Fund Direct Growth
-+14.87%
-+22.34%
++15.30%
++22.85%
 61,808.85
 Quant Small Cap Fund Direct Plan Growth
-+12.98%
-+22.32%
++13.49%
++22.82%
 25,820.99
 Compare
 Fund management
@@ -346,7 +346,7 @@ The Wealth Company Balanced Advantage Fund Direct Growth
 The Wealth Company Small Cap Fund Direct Growth
 About
 The Wealth Company Small Cap Fund Direct Growth
-The Wealth Company Small Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Aparna Shanker is the Current Fund Manager of The Wealth Company Small Cap Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 06 May 2026 is ₹11.04.
+The Wealth Company Small Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Aparna Shanker is the Current Fund Manager of The Wealth Company Small Cap Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 07 May 2026 is ₹11.11.
 The The Wealth Company Small Cap Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹2,000. Minimum Lumpsum Investment is ₹10,000. Exit load of 1%, if redeemed within 1 Year.
 ;
 Investment Objective

@@ -1,7 +1,7 @@
 {
   "doc_id": "DOC-011",
   "source_url": "https://groww.in/mutual-funds/icici-prudential-dynamic-plan-direct-growth",
-  "normalized_at": "2026-05-07T11:41:18.065404+00:00",
+  "normalized_at": "2026-05-08T11:09:34.056670+00:00",
   "typed_facts": [
     {
       "fact_type": "expense_ratio",
@@ -11,7 +11,7 @@
     },
     {
       "fact_type": "nav",
-      "value": "₹895.66",
+      "value": "₹897.35",
       "confidence": "HIGH",
       "normalized": true
     },

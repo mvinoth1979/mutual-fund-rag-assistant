@@ -1,7 +1,7 @@
 {
   "doc_id": "DOC-019",
   "source_url": "https://groww.in/mutual-funds/axis-large-cap-fund-direct-growth",
-  "extracted_at": "2026-05-07T11:41:16.631698+00:00",
+  "extracted_at": "2026-05-08T11:09:31.650677+00:00",
   "extraction_success": true,
   "fallback_to_raw": false,
   "error": null,
@@ -15,17 +15,17 @@
     },
     {
       "fact_type": "nav",
-      "value": "₹67.68",
+      "value": "₹67.80",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "NAV: 06 May '26\n₹67.68"
+      "raw_snippet": "NAV: 07 May '26\n₹67.80"
     },
     {
       "fact_type": "aum",
       "value": "₹28,661.27 Cr",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+11.62\n%\n3Y annualised\n+1.38\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 06 May '26\n₹67.68\nMin. for SIP\n₹100\nFund size (AUM)\n₹28,661.27 Cr"
+      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+11.67\n%\n3Y annualised\n+0.18\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 07 May '26\n₹67.80\nMin. for SIP\n₹100\nFund size (AUM)\n₹28,661.27 Cr"
     },
     {
       "fact_type": "min_sip",

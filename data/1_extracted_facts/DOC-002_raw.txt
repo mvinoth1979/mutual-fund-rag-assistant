@@ -64,14 +64,14 @@ Blog
 1M
 6M
 All
-NAV: 06 May '26
-₹9.74
+NAV: 07 May '26
+₹9.82
 Min. for SIP
 ₹250
 Fund size (AUM)
 ₹33.71 Cr
 Expense ratio
-0.72%
+1.17%
 Rating
 --
 Return calculator
@@ -86,15 +86,15 @@ Historic returns
 Returns
 3 months
 ₹15,000
-₹15,661
+₹15,751
 +
-4.41
+5.01
 %
 6 months
 ₹30,000
-₹30,568
+₹30,792
 +
-1.89
+2.64
 %
 Holdings (
 39
@@ -296,8 +296,8 @@ Rank (
 Equity Thematic
 )
 --
-35
-36
+34
+33
 --
 Understand terms
 Expense ratio
@@ -350,7 +350,7 @@ Also manages these schemes
 The Wealth Company Ethical Fund Direct Growth
 About
 The Wealth Company Ethical Fund Direct Growth
-The Wealth Company Ethical Fund Direct Growth is a Equity Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Aparna Shanker is the Current Fund Manager of The Wealth Company Ethical Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 06 May 2026 is ₹9.74.
+The Wealth Company Ethical Fund Direct Growth is a Equity Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Aparna Shanker is the Current Fund Manager of The Wealth Company Ethical Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 07 May 2026 is ₹9.82.
 The The Wealth Company Ethical Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹250. Minimum Lumpsum Investment is ₹1,000. Exit load of 1%, if redeemed within 30 days.
 ;
 Investment Objective

@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+45.42
++46.39
 %
 3Y annualised
-+2.46
++2.11
 %
 1D
 1M
@@ -72,8 +72,8 @@ Blog
 1Y
 3Y
 All
-NAV: 06 May '26
-₹37.55
+NAV: 07 May '26
+₹38.34
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -94,26 +94,26 @@ Historic returns
 Returns
 3 months
 ₹15,000
-₹14,631
--2.46
+₹14,910
+-0.60
 %
 6 months
 ₹30,000
-₹32,199
+₹32,816
 +
-7.33
+9.39
 %
 1 year
 ₹60,000
-₹92,280
+₹93,965
 +
-53.80
+56.61
 %
 3 years
 ₹1,80,000
-₹4,42,852
+₹4,51,475
 +
-146.03
+150.82
 %
 Holdings (
 1
@@ -147,10 +147,10 @@ Name
 3Y
 All
 Fund returns
-+64.7%
-+149.4%
-+45.4%
-+36.4%
++67.9%
++154.9%
++46.4%
++37.1%
 Category average (
 Commodities Silver
 )
@@ -162,7 +162,7 @@ Rank (
 Commodities Silver
 )
 --
-4
+5
 1
 --
 Understand terms
@@ -333,7 +333,7 @@ ICICI Prudential Passive Multi Asset FoF Direct Growth
 ICICI Prudential Silver ETF FoF Direct Growth
 About
 ICICI Prudential Silver ETF FoF Direct Growth
-ICICI Prudential Silver ETF FoF Direct Growth is a Commodities Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Ashwini Jemin Bharucha is the Current Fund Manager of ICICI Prudential Silver ETF FoF Direct Growth fund. Latest NAV as of 06 May 2026 is ₹37.55.
+ICICI Prudential Silver ETF FoF Direct Growth is a Commodities Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Ashwini Jemin Bharucha is the Current Fund Manager of ICICI Prudential Silver ETF FoF Direct Growth fund. Latest NAV as of 07 May 2026 is ₹38.34.
 The ICICI Prudential Silver ETF FoF Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹100. Exit load of 1% If redeemed within 15 days.
 ;
 Investment Objective

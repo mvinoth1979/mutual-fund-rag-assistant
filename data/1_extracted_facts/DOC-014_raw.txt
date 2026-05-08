@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+21.01
++21.12
 %
 3Y annualised
-+1.47
++0.31
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹1,146.56
+NAV: 07 May '26
+₹1,150.13
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,27 +95,27 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹60,978
+₹61,157
 +
-1.63
+1.93
 %
 3 years
 ₹1,80,000
-₹2,13,600
+₹2,14,193
 +
-18.67
+19.00
 %
 5 years
 ₹3,00,000
-₹4,49,858
+₹4,51,061
 +
-49.95
+50.35
 %
 10 years
 ₹6,00,000
-₹15,16,438
+₹15,20,462
 +
-152.74
+153.41
 %
 Holdings (
 95
@@ -526,7 +526,7 @@ Name
 10Y
 All
 Fund returns
-+21.0%
++21.1%
 +20.3%
 +17.4%
 +16.2%
@@ -579,24 +579,24 @@ Name
 3Y
 Fund Size(Cr)
 Motilal Oswal Large and Midcap Fund Direct Growth
-+20.49%
-+27.58%
++20.92%
++28.26%
 13,995.29
 Bandhan Large & Mid Cap Fund Direct Growth
-+14.04%
-+25.18%
++13.87%
++25.47%
 14,108.57
 ICICI Prudential Large & Mid Cap Fund Direct Plan Growth
-+7.77%
-+21.01%
++7.43%
++21.12%
 27,004.55
 Nippon India Vision Large & Mid Cap Direct Growth
-+7.50%
-+20.64%
++7.29%
++20.80%
 6,299.19
 DSP Large & Mid Cap Fund Direct Plan Growth
-+5.37%
-+20.22%
++4.91%
++20.35%
 15,780.10
 Compare
 Fund management
@@ -674,7 +674,7 @@ ICICI Prudential Infrastructure Direct Growth
 ICICI Prudential Quality Fund Direct Growth
 About
 ICICI Prudential Large & Mid Cap Fund Direct Plan Growth
-ICICI Prudential Large & Mid Cap Fund Direct Plan Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Large & Mid Cap Fund Direct Plan Growth fund. Latest NAV as of 06 May 2026 is ₹1,146.56.
+ICICI Prudential Large & Mid Cap Fund Direct Plan Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Large & Mid Cap Fund Direct Plan Growth fund. Latest NAV as of 07 May 2026 is ₹1,150.13.
 The ICICI Prudential Large & Mid Cap Fund Direct Plan Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹5,000. Exit load of 1% if redeemed within 1 month.
 ;
 Investment Objective

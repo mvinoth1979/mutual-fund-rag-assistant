@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+25.05
++24.95
 %
 3Y annualised
-+0.23
+-0.18
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹36.40
+NAV: 07 May '26
+₹36.33
 Min. for SIP
 ₹1,000
 Fund size (AUM)
@@ -95,27 +95,27 @@ Historic returns
 Returns
 6 months
 ₹30,000
-₹31,129
+₹31,060
 +
-3.76
+3.53
 %
 1 year
 ₹60,000
-₹64,992
+₹64,845
 +
-8.32
+8.08
 %
 3 years
 ₹1,80,000
-₹2,24,136
+₹2,23,637
 +
-24.52
+24.24
 %
 5 years
 ₹3,00,000
-₹5,26,421
+₹5,25,151
 +
-75.47
+75.05
 %
 Holdings (
 1
@@ -149,10 +149,10 @@ Name
 5Y
 All
 Fund returns
-+18.3%
-+25.1%
-+27.8%
 +17.9%
++24.9%
++27.4%
++17.8%
 Category average (
 Equity Large Cap
 )
@@ -194,24 +194,24 @@ Name
 3Y
 Fund Size(Cr)
 Invesco India Largecap Fund Direct Growth
-+5.95%
-+17.83%
++5.55%
++17.96%
 1,536.88
 Nippon India Large Cap Fund Direct Growth
-+5.87%
-+17.55%
++5.49%
++17.58%
 46,520.53
 WhiteOak Capital Large Cap Fund Direct Growth
-+4.81%
-+17.18%
++4.44%
++17.22%
 1,045.06
 DSP Large Cap Fund Direct Growth
-+0.24%
-+16.49%
+-0.07%
++16.60%
 6,619.60
 ICICI Prudential Large Cap Fund Direct Growth
-+2.18%
-+16.34%
++2.31%
++16.41%
 69,947.55
 Compare
 Fund management
@@ -374,7 +374,7 @@ ICICI Prudential Nifty Midcap 150 Index Fund Direct Growth
 ICICI Prudential Silver ETF FoF Direct Growth
 About
 ICICI Prudential BHARAT 22 FOF Direct Growth
-ICICI Prudential BHARAT 22 FOF Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Venus Ahuja is the Current Fund Manager of ICICI Prudential BHARAT 22 FOF Direct Growth fund. Latest NAV as of 06 May 2026 is ₹36.40.
+ICICI Prudential BHARAT 22 FOF Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Venus Ahuja is the Current Fund Manager of ICICI Prudential BHARAT 22 FOF Direct Growth fund. Latest NAV as of 07 May 2026 is ₹36.33.
 The ICICI Prudential BHARAT 22 FOF Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹1,000. Minimum Lumpsum Investment is ₹5,000.
 ;
 Investment Objective

@@ -1,17 +1,17 @@
 {
   "doc_id": "DOC-003",
   "source_url": "https://groww.in/mutual-funds/the-wealth-company-multi-asset-allocation-fund-direct-growth",
-  "normalized_at": "2026-05-07T11:41:17.567125+00:00",
+  "normalized_at": "2026-05-08T11:09:33.594061+00:00",
   "typed_facts": [
     {
       "fact_type": "expense_ratio",
-      "value": "1.59%",
+      "value": "1.36%",
       "confidence": "HIGH",
       "normalized": true
     },
     {
       "fact_type": "nav",
-      "value": "₹10.72",
+      "value": "₹10.76",
       "confidence": "HIGH",
       "normalized": true
     },

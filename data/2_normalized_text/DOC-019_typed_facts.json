@@ -1,7 +1,7 @@
 {
   "doc_id": "DOC-019",
   "source_url": "https://groww.in/mutual-funds/axis-large-cap-fund-direct-growth",
-  "normalized_at": "2026-05-07T11:41:18.576811+00:00",
+  "normalized_at": "2026-05-08T11:09:34.520928+00:00",
   "typed_facts": [
     {
       "fact_type": "expense_ratio",
@@ -11,7 +11,7 @@
     },
     {
       "fact_type": "nav",
-      "value": "₹67.68",
+      "value": "₹67.80",
       "confidence": "HIGH",
       "normalized": true
     },

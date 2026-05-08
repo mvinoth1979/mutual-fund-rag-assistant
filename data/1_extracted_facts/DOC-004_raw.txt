@@ -64,14 +64,14 @@ Blog
 1M
 6M
 All
-NAV: 06 May '26
-₹10.12
+NAV: 07 May '26
+₹10.19
 Min. for SIP
 ₹250
 Fund size (AUM)
 ₹195.12 Cr
 Expense ratio
-4.01%
+0.59%
 Rating
 --
 Return calculator
@@ -86,15 +86,15 @@ Historic returns
 Returns
 3 months
 ₹15,000
-₹15,835
+₹15,907
 +
-5.57
+6.05
 %
 6 months
 ₹30,000
-₹30,935
+₹31,128
 +
-3.12
+3.76
 %
 Holdings (
 40
@@ -300,8 +300,8 @@ Rank (
 Equity Flexi Cap
 )
 --
-43
-20
+40
+22
 --
 Understand terms
 Expense ratio
@@ -330,24 +330,24 @@ Name
 3Y
 Fund Size(Cr)
 JM Flexicap Fund Direct Plan Growth
-+2.60%
-+20.50%
++3.37%
++20.96%
 4,504.47
 HDFC Flexi Cap Direct Plan Growth
-+4.22%
-+20.13%
++4.19%
++20.27%
 91,334.91
 HSBC Flexi Cap Fund Direct Growth
 +11.49%
-+19.89%
++20.20%
 4,724.03
 Parag Parikh Flexi Cap Fund Direct Growth
-+4.73%
-+18.06%
++4.27%
++17.99%
 1,28,966.48
 Franklin India Flexi Cap Fund Direct Growth
-+1.33%
-+17.55%
++1.19%
++17.68%
 17,535.63
 Compare
 Fund management
@@ -396,7 +396,7 @@ The Wealth Company Multi Asset Allocation Fund Direct Growth
 The Wealth Company Balanced Advantage Fund Direct Growth
 About
 The Wealth Company Flexi Cap Fund Direct Growth
-The Wealth Company Flexi Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Neeraj Jain is the Current Fund Manager of The Wealth Company Flexi Cap Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 06 May 2026 is ₹10.12.
+The Wealth Company Flexi Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Neeraj Jain is the Current Fund Manager of The Wealth Company Flexi Cap Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 07 May 2026 is ₹10.19.
 The The Wealth Company Flexi Cap Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹250. Minimum Lumpsum Investment is ₹1,000. Exit load of 1%, if redeemed within 30 days.
 ;
 Investment Objective

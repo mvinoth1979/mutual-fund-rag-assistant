@@ -1,7 +1,7 @@
 {
   "doc_id": "DOC-011",
   "source_url": "https://groww.in/mutual-funds/icici-prudential-dynamic-plan-direct-growth",
-  "extracted_at": "2026-05-07T11:41:08.671482+00:00",
+  "extracted_at": "2026-05-08T11:09:22.418367+00:00",
   "extraction_success": true,
   "fallback_to_raw": false,
   "error": null,
@@ -15,17 +15,17 @@
     },
     {
       "fact_type": "nav",
-      "value": "₹895.66",
+      "value": "₹897.35",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "NAV: 06 May '26\n₹895.66"
+      "raw_snippet": "NAV: 07 May '26\n₹897.35"
     },
     {
       "fact_type": "aum",
       "value": "₹77,658.27 Cr",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+18.81\n%\n3Y annualised\n+1.17\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 06 May '26\n₹895.66\nMin. for SIP\n₹100\nFund size (AUM)\n₹77,658.27 Cr"
+      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+18.87\n%\n3Y annualised\n+0.19\n%\n1D\n1M\n6M\n1Y\n3Y\n5Y\nAll\nNAV: 07 May '26\n₹897.35\nMin. for SIP\n₹100\nFund size (AUM)\n₹77,658.27 Cr"
     },
     {
       "fact_type": "min_sip",

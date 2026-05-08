@@ -1,7 +1,7 @@
 {
   "doc_id": "DOC-008",
   "source_url": "https://groww.in/mutual-funds/icici-prudential-silver-etf-fof-direct-growth",
-  "extracted_at": "2026-05-07T11:41:04.020542+00:00",
+  "extracted_at": "2026-05-08T11:09:18.005124+00:00",
   "extraction_success": true,
   "fallback_to_raw": false,
   "error": null,
@@ -15,17 +15,17 @@
     },
     {
       "fact_type": "nav",
-      "value": "₹37.55",
+      "value": "₹38.34",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "NAV: 06 May '26\n₹37.55"
+      "raw_snippet": "NAV: 07 May '26\n₹38.34"
     },
     {
       "fact_type": "aum",
       "value": "₹5,919.47 Cr",
       "confidence": "HIGH",
       "source": "regex",
-      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+45.42\n%\n3Y annualised\n+2.46\n%\n1D\n1M\n6M\n1Y\n3Y\nAll\nNAV: 06 May '26\n₹37.55\nMin. for SIP\n₹100\nFund size (AUM)\n₹5,919.47 Cr"
+      "raw_snippet": "fund size and more\nTrack Funds\nImport funds and track all investments in a single place\nCompare Funds\nMore\nSIP calculator\nEstimate returns on a SIP\nBrokerage calculator\nEstimate charges for your trade/investment\nMargin calculator\nEstimate balance needed to buy/sell a stock\nSWP calculator\nReturns on your systematic withdrawal plan\nPricing\nBrokerage and charges on Groww\nBlog\n+46.39\n%\n3Y annualised\n+2.11\n%\n1D\n1M\n6M\n1Y\n3Y\nAll\nNAV: 07 May '26\n₹38.34\nMin. for SIP\n₹100\nFund size (AUM)\n₹5,919.47 Cr"
     },
     {
       "fact_type": "min_sip",

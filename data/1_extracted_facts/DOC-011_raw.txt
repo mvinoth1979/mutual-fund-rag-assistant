@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+18.81
++18.87
 %
 3Y annualised
-+1.17
++0.19
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹895.66
+NAV: 07 May '26
+₹897.35
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,27 +95,27 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹61,394
+₹62,092
 +
-2.32
+3.49
 %
 3 years
 ₹1,80,000
-₹2,16,062
+₹2,18,507
 +
-20.03
+21.39
 %
 5 years
 ₹3,00,000
-₹4,45,137
+₹4,50,151
 +
-48.38
+50.05
 %
 10 years
 ₹6,00,000
-₹14,62,432
+₹14,78,902
 +
-143.74
+146.48
 %
 Holdings (
 283
@@ -1278,8 +1278,8 @@ Name
 10Y
 All
 Fund returns
-+18.8%
-+19.5%
++18.9%
++19.3%
 +17.1%
 +16.4%
 Category average (
@@ -1333,24 +1333,24 @@ Name
 3Y
 Fund Size(Cr)
 Quant Multi Asset Allocation Fund Direct Growth
-+25.01%
-+24.49%
++25.22%
++24.57%
 4,754.57
 Nippon India Multi Asset Allocation Fund Direct Growth
-+21.20%
-+22.25%
++21.32%
++22.33%
 13,138.56
-ICICI Prudential Multi Asset Fund Direct Growth
-+10.90%
-+18.81%
-77,658.27
 SBI Multi Asset Allocation Fund Direct Growth
-+18.50%
-+18.75%
++18.42%
++18.91%
 16,149.83
+ICICI Prudential Multi Asset Fund Direct Growth
++10.96%
++18.87%
+77,658.27
 HDFC Multi Asset Allocation Fund Direct Growth
-+8.27%
-+14.60%
++8.31%
++14.64%
 5,555.82
 Compare
 Fund management
@@ -1543,7 +1543,7 @@ ICICI Prudential Equity & Debt Fund Direct Growth
 ICICI Prudential Equity Savings Fund Direct Growth
 About
 ICICI Prudential Multi Asset Fund Direct Growth
-ICICI Prudential Multi Asset Fund Direct Growth is a Hybrid Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Multi Asset Fund Direct Growth fund. Latest NAV as of 06 May 2026 is ₹895.66.
+ICICI Prudential Multi Asset Fund Direct Growth is a Hybrid Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Multi Asset Fund Direct Growth fund. Latest NAV as of 07 May 2026 is ₹897.35.
 The ICICI Prudential Multi Asset Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹5,000. Exit Load for units in excess of 30% of the investment,1% will be charged for redemption within 365 days.
 ;
 Investment Objective

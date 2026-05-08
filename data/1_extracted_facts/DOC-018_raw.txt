@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+45.12
++46.02
 %
 3Y annualised
-+2.56
++1.99
 %
 1D
 1M
@@ -72,14 +72,14 @@ Blog
 1Y
 3Y
 All
-NAV: 06 May '26
-₹42.01
+NAV: 07 May '26
+₹42.85
 Min. for SIP
 ₹100
 Fund size (AUM)
 ₹1,071.15 Cr
 Expense ratio
-0.10%
+0.08%
 Rating
 --
 Return calculator
@@ -94,26 +94,26 @@ Historic returns
 Returns
 3 months
 ₹15,000
-₹14,628
--2.48
+₹14,891
+-0.73
 %
 6 months
 ₹30,000
-₹32,244
+₹32,821
 +
-7.48
+9.40
 %
 1 year
 ₹60,000
-₹92,330
+₹93,901
 +
-53.88
+56.50
 %
 3 years
 ₹1,80,000
-₹4,42,945
+₹4,51,007
 +
-146.08
+150.56
 %
 Holdings (
 1
@@ -147,10 +147,10 @@ Name
 3Y
 All
 Fund returns
-+64.4%
-+149.0%
-+45.1%
-+48.6%
++67.7%
++153.4%
++46.0%
++49.4%
 Category average (
 Commodities Silver
 )
@@ -233,7 +233,7 @@ Axis Multi Asset Active FoF Direct Growth
 Axis Gold and Silver Passive FoF Direct Growth
 About
 Axis Silver FoF Direct Growth
-Axis Silver FoF Direct Growth is a Commodities Mutual Fund Scheme launched by Axis Mutual Fund. This scheme was made available to investors on 04 Sep 2009. Pratik Tibrewal is the Current Fund Manager of Axis Silver FoF Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹3,16,229 Cr and the Latest NAV as of 06 May 2026 is ₹42.01.
+Axis Silver FoF Direct Growth is a Commodities Mutual Fund Scheme launched by Axis Mutual Fund. This scheme was made available to investors on 04 Sep 2009. Pratik Tibrewal is the Current Fund Manager of Axis Silver FoF Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹3,16,229 Cr and the Latest NAV as of 07 May 2026 is ₹42.85.
 The Axis Silver FoF Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹5,000. Exit load of 0.25%, if redeemed within 7 days.
 ;
 Investment Objective

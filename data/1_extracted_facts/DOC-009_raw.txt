@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+16.34
++16.41
 %
 3Y annualised
-+1.23
++0.23
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹119.39
+NAV: 07 May '26
+₹119.66
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,26 +95,26 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹59,068
--1.55
+₹59,204
+-1.33
 %
 3 years
 ₹1,80,000
-₹2,00,462
+₹2,00,872
 +
-11.37
+11.60
 %
 5 years
 ₹3,00,000
-₹4,04,619
+₹4,05,401
 +
-34.87
+35.13
 %
 10 years
 ₹6,00,000
-₹12,78,521
+₹12,80,925
 +
-113.09
+113.49
 %
 Holdings (
 79
@@ -461,8 +461,8 @@ Name
 10Y
 All
 Fund returns
-+16.3%
-+15.4%
++16.4%
++15.3%
 +15.3%
 +14.9%
 Category average (
@@ -475,8 +475,8 @@ Equity Large Cap
 Rank (
 Equity Large Cap
 )
-29
-6
+30
+11
 3
 --
 Understand terms
@@ -508,24 +508,24 @@ Name
 3Y
 Fund Size(Cr)
 Invesco India Largecap Fund Direct Growth
-+5.95%
-+17.83%
++5.55%
++17.96%
 1,536.88
 Nippon India Large Cap Fund Direct Growth
-+5.87%
-+17.55%
++5.49%
++17.58%
 46,520.53
 WhiteOak Capital Large Cap Fund Direct Growth
-+4.81%
-+17.18%
++4.44%
++17.22%
 1,045.06
 DSP Large Cap Fund Direct Growth
-+0.24%
-+16.49%
+-0.07%
++16.60%
 6,619.60
 ICICI Prudential Large Cap Fund Direct Growth
-+2.18%
-+16.34%
++2.31%
++16.41%
 69,947.55
 Compare
 Fund management
@@ -621,7 +621,7 @@ ICICI Prudential Technology Direct Plan Growth
 ICICI Prudential Innovation Fund Direct Growth
 About
 ICICI Prudential Large Cap Fund Direct Growth
-ICICI Prudential Large Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Large Cap Fund Direct Growth fund. Latest NAV as of 06 May 2026 is ₹119.39.
+ICICI Prudential Large Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Sharmila D'Silva is the Current Fund Manager of ICICI Prudential Large Cap Fund Direct Growth fund. Latest NAV as of 07 May 2026 is ₹119.66.
 The ICICI Prudential Large Cap Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹100. Exit load of 1%, if redeemed within 1 month.
 ;
 Investment Objective

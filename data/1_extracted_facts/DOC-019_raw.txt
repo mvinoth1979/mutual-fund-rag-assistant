@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+11.62
++11.67
 %
 3Y annualised
-+1.38
++0.18
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹67.68
+NAV: 07 May '26
+₹67.80
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,26 +95,26 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹58,818
--1.97
+₹58,927
+-1.79
 %
 3 years
 ₹1,80,000
-₹1,92,998
+₹1,93,312
 +
-7.22
+7.40
 %
 5 years
 ₹3,00,000
-₹3,59,636
+₹3,60,200
 +
-19.88
+20.07
 %
 10 years
 ₹6,00,000
-₹10,86,507
+₹10,88,102
 +
-81.08
+81.35
 %
 Holdings (
 49
@@ -341,10 +341,10 @@ Name
 10Y
 All
 Fund returns
-+11.6%
++11.7%
 +9.4%
 +13.3%
-+13.6%
++13.7%
 Category average (
 Equity Large Cap
 )
@@ -390,24 +390,24 @@ Name
 3Y
 Fund Size(Cr)
 Invesco India Largecap Fund Direct Growth
-+5.95%
-+17.83%
++5.55%
++17.96%
 1,536.88
 Nippon India Large Cap Fund Direct Growth
-+5.87%
-+17.55%
++5.49%
++17.58%
 46,520.53
 WhiteOak Capital Large Cap Fund Direct Growth
-+4.81%
-+17.18%
++4.44%
++17.22%
 1,045.06
 DSP Large Cap Fund Direct Growth
-+0.24%
-+16.49%
+-0.07%
++16.60%
 6,619.60
 ICICI Prudential Large Cap Fund Direct Growth
-+2.18%
-+16.34%
++2.31%
++16.41%
 69,947.55
 Compare
 Fund management
@@ -484,7 +484,7 @@ Axis Children's Fund Direct Compulsory Lock In Growth
 Axis Children's Fund Direct No Lock In Growth
 About
 Axis Large Cap Fund Direct Growth
-Axis Large Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by Axis Mutual Fund. This scheme was made available to investors on 04 Sep 2009. Krishnaa Narayan is the Current Fund Manager of Axis Large Cap Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹3,16,229 Cr and the Latest NAV as of 06 May 2026 is ₹67.68.
+Axis Large Cap Fund Direct Growth is a Equity Mutual Fund Scheme launched by Axis Mutual Fund. This scheme was made available to investors on 04 Sep 2009. Krishnaa Narayan is the Current Fund Manager of Axis Large Cap Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹3,16,229 Cr and the Latest NAV as of 07 May 2026 is ₹67.80.
 The Axis Large Cap Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹100. Exit Load for units in excess of 10% of the investment,1% will be charged for redemption within 12 months.
 ;
 Investment Objective

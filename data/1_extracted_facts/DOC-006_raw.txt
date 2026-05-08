@@ -64,14 +64,14 @@ Blog
 1M
 6M
 All
-NAV: 06 May '26
-₹1,036.40
+NAV: 07 May '26
+₹1,036.58
 Min. for SIP
 ₹250
 Fund size (AUM)
 ₹564.31 Cr
 Expense ratio
-0.10%
+0.12%
 Rating
 --
 Return calculator
@@ -92,7 +92,7 @@ Returns
 %
 6 months
 ₹30,000
-₹30,424
+₹30,423
 +
 1.41
 %
@@ -316,7 +316,7 @@ The Wealth Company Multi Asset Allocation Fund Direct Growth
 The Wealth Company Balanced Advantage Fund Direct Growth
 About
 The Wealth Company Liquid Fund Direct Growth
-The Wealth Company Liquid Fund Direct Growth is a Debt Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Neeraj Jain is the Current Fund Manager of The Wealth Company Liquid Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 06 May 2026 is ₹1,036.40.
+The Wealth Company Liquid Fund Direct Growth is a Debt Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Neeraj Jain is the Current Fund Manager of The Wealth Company Liquid Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 07 May 2026 is ₹1,036.58.
 The The Wealth Company Liquid Fund Direct Growth is rated Low to Moderate risk. Minimum SIP Investment is set to ₹250. Minimum Lumpsum Investment is ₹1,000. Exit load of 0.0070% if redeemed within 1 day, 0.0065% if redeemed within 2 days, 0.0060% if redeemed within 3 days, 0.0055% if redeemed within 4 days, 0.0050% if redeemed within 5 days, 0.0045% if redeemed within 6 days.
 ;
 Investment Objective

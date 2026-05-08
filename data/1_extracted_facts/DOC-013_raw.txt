@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+21.70
++21.77
 %
 3Y annualised
-+1.51
++0.22
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹66.59
+NAV: 07 May '26
+₹66.74
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,27 +95,27 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹63,542
+₹63,660
 +
-5.90
+6.10
 %
 3 years
 ₹1,80,000
-₹2,13,879
+₹2,14,287
 +
-18.82
+19.05
 %
 5 years
 ₹3,00,000
-₹4,27,772
+₹4,28,565
 +
-42.59
+42.85
 %
 10 years
 ₹6,00,000
-₹12,47,606
+₹12,49,937
 +
-107.93
+108.32
 %
 Holdings (
 50
@@ -346,7 +346,7 @@ Name
 10Y
 All
 Fund returns
-+21.7%
++21.8%
 +15.4%
 +14.6%
 +14.4%
@@ -395,24 +395,24 @@ Name
 3Y
 Fund Size(Cr)
 Invesco India Largecap Fund Direct Growth
-+5.95%
-+17.83%
++5.55%
++17.96%
 1,536.88
 Nippon India Large Cap Fund Direct Growth
-+5.87%
-+17.55%
++5.49%
++17.58%
 46,520.53
 WhiteOak Capital Large Cap Fund Direct Growth
-+4.81%
-+17.18%
++4.44%
++17.22%
 1,045.06
 DSP Large Cap Fund Direct Growth
-+0.24%
-+16.49%
+-0.07%
++16.60%
 6,619.60
 ICICI Prudential Large Cap Fund Direct Growth
-+2.18%
-+16.34%
++2.31%
++16.41%
 69,947.55
 Compare
 Fund management
@@ -575,7 +575,7 @@ ICICI Prudential Nifty Midcap 150 Index Fund Direct Growth
 ICICI Prudential Silver ETF FoF Direct Growth
 About
 ICICI Prudential Nifty Next 50 Index Direct Growth
-ICICI Prudential Nifty Next 50 Index Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Ajay Kumar Solanki is the Current Fund Manager of ICICI Prudential Nifty Next 50 Index Direct Growth fund. Latest NAV as of 06 May 2026 is ₹66.59.
+ICICI Prudential Nifty Next 50 Index Direct Growth is a Equity Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Ajay Kumar Solanki is the Current Fund Manager of ICICI Prudential Nifty Next 50 Index Direct Growth fund. Latest NAV as of 07 May 2026 is ₹66.74.
 The ICICI Prudential Nifty Next 50 Index Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹100.
 ;
 Investment Objective

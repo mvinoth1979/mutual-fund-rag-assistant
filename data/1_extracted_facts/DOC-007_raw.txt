@@ -64,14 +64,14 @@ Blog
 1M
 6M
 All
-NAV: 06 May '26
-₹10.34
+NAV: 07 May '26
+₹10.36
 Min. for SIP
 ₹250
 Fund size (AUM)
 ₹153.67 Cr
 Expense ratio
-3.78%
+6.51%
 Rating
 --
 Return calculator
@@ -86,15 +86,15 @@ Historic returns
 Returns
 3 months
 ₹15,000
-₹15,056
+₹15,075
 +
-0.37
+0.50
 %
 6 months
 ₹30,000
-₹30,350
+₹30,391
 +
-1.17
+1.30
 %
 Holdings (
 93
@@ -512,8 +512,8 @@ Rank (
 Hybrid Arbitrage
 )
 --
-29
-26
+27
+24
 --
 Understand terms
 Expense ratio
@@ -542,24 +542,24 @@ Name
 3Y
 Fund Size(Cr)
 Tata Arbitrage Fund Direct Growth
-+6.52%
-+7.63%
++6.69%
++7.67%
 20,686.40
 Invesco India Arbitrage Fund Direct Growth
-+6.48%
-+7.62%
++6.63%
++7.66%
 21,850.79
 Aditya Birla Sun Life Arbitrage Fund Direct Growth
-+6.40%
-+7.58%
++6.58%
++7.62%
 25,064.55
 SBI Arbitrage Opportunities Fund Direct Growth
-+6.32%
-+7.48%
++6.48%
++7.53%
 41,059.15
 Bandhan Arbitrage Fund Direct Growth
-+6.15%
-+7.47%
++6.34%
++7.51%
 7,790.46
 Compare
 Fund management
@@ -605,7 +605,7 @@ The Wealth Company Balanced Advantage Fund Direct Growth
 The Wealth Company Small Cap Fund Direct Growth
 About
 The Wealth Company Arbitrage Fund Direct Growth
-The Wealth Company Arbitrage Fund Direct Growth is a Hybrid Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Rouhak Shah is the Current Fund Manager of The Wealth Company Arbitrage Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 06 May 2026 is ₹10.34.
+The Wealth Company Arbitrage Fund Direct Growth is a Hybrid Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Rouhak Shah is the Current Fund Manager of The Wealth Company Arbitrage Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 07 May 2026 is ₹10.36.
 The The Wealth Company Arbitrage Fund Direct Growth is rated Low to Moderate risk. Minimum SIP Investment is set to ₹250. Minimum Lumpsum Investment is ₹1,000. Exit load of 0.25%, if redeemed within 7 days.
 ;
 Investment Objective

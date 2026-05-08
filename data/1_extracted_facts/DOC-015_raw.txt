@@ -61,10 +61,10 @@ Returns on your systematic withdrawal plan
 Pricing
 Brokerage and charges on Groww
 Blog
-+33.30
++33.34
 %
 3Y annualised
-+1.70
++0.18
 %
 1D
 1M
@@ -73,8 +73,8 @@ Blog
 3Y
 5Y
 All
-NAV: 06 May '26
-₹48.07
+NAV: 07 May '26
+₹48.15
 Min. for SIP
 ₹100
 Fund size (AUM)
@@ -95,27 +95,27 @@ Historic returns
 Returns
 1 year
 ₹60,000
-₹73,689
+₹73,731
 +
-22.81
+22.88
 %
 3 years
 ₹1,80,000
-₹3,28,167
+₹3,28,411
 +
-82.31
+82.45
 %
 5 years
 ₹3,00,000
-₹6,67,139
+₹6,67,791
 +
-122.38
+122.60
 %
 10 years
 ₹6,00,000
-₹18,80,469
+₹18,82,784
 +
-213.41
+213.80
 %
 Holdings (
 1
@@ -150,7 +150,7 @@ Name
 All
 Fund returns
 +33.3%
-+24.9%
++24.7%
 +16.3%
 +11.5%
 Category average (
@@ -163,8 +163,8 @@ Commodities Gold
 Rank (
 Commodities Gold
 )
-4
-4
+3
+3
 6
 --
 Understand terms
@@ -337,7 +337,7 @@ ICICI Prudential Passive Multi Asset FoF Direct Growth
 ICICI Prudential Silver ETF FoF Direct Growth
 About
 ICICI Prudential Gold ETF FoF Direct Growth
-ICICI Prudential Gold ETF FoF Direct Growth is a Commodities Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Nishit Patel is the Current Fund Manager of ICICI Prudential Gold ETF FoF Direct Growth fund. Latest NAV as of 06 May 2026 is ₹48.07.
+ICICI Prudential Gold ETF FoF Direct Growth is a Commodities Mutual Fund Scheme launched by ICICI Prudential Mutual Fund. This scheme was made available to investors on 12 Oct 1993. Nishit Patel is the Current Fund Manager of ICICI Prudential Gold ETF FoF Direct Growth fund. Latest NAV as of 07 May 2026 is ₹48.15.
 The ICICI Prudential Gold ETF FoF Direct Growth is rated High risk. Minimum SIP Investment is set to ₹100. Minimum Lumpsum Investment is ₹100. Exit load of 1% if redeemed within 15 days
 ;
 Investment Objective

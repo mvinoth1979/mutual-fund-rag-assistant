@@ -63,14 +63,14 @@ Brokerage and charges on Groww
 Blog
 1M
 All
-NAV: 06 May '26
-₹10.72
+NAV: 07 May '26
+₹10.76
 Min. for SIP
 ₹250
 Fund size (AUM)
 ₹141.87 Cr
 Expense ratio
-1.59%
+1.36%
 Rating
 --
 Return calculator
@@ -85,9 +85,9 @@ Historic returns
 Returns
 3 months
 ₹15,000
-₹15,420
+₹15,466
 +
-2.80
+3.11
 %
 Holdings (
 59
@@ -399,24 +399,24 @@ Name
 3Y
 Fund Size(Cr)
 Quant Multi Asset Allocation Fund Direct Growth
-+25.01%
-+24.49%
++25.22%
++24.57%
 4,754.57
 Nippon India Multi Asset Allocation Fund Direct Growth
-+21.20%
-+22.25%
++21.32%
++22.33%
 13,138.56
-ICICI Prudential Multi Asset Fund Direct Growth
-+10.90%
-+18.81%
-77,658.27
 SBI Multi Asset Allocation Fund Direct Growth
-+18.50%
-+18.75%
++18.42%
++18.91%
 16,149.83
+ICICI Prudential Multi Asset Fund Direct Growth
++10.96%
++18.87%
+77,658.27
 HDFC Multi Asset Allocation Fund Direct Growth
-+8.27%
-+14.60%
++8.31%
++14.64%
 5,555.82
 Compare
 Fund management
@@ -464,7 +464,7 @@ The Wealth Company Multi Asset Allocation Fund Direct Growth
 The Wealth Company Balanced Advantage Fund Direct Growth
 About
 The Wealth Company Multi Asset Allocation Fund Direct Growth
-The Wealth Company Multi Asset Allocation Fund Direct Growth is a Hybrid Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Niranjan Das is the Current Fund Manager of The Wealth Company Multi Asset Allocation Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 06 May 2026 is ₹10.72.
+The Wealth Company Multi Asset Allocation Fund Direct Growth is a Hybrid Mutual Fund Scheme launched by The Wealth Company Mutual Fund. This scheme was made available to investors on 18 Jul 2025. Niranjan Das is the Current Fund Manager of The Wealth Company Multi Asset Allocation Fund Direct Growth fund. The fund currently has an Asset Under Management(AUM) of ₹1,112 Cr and the Latest NAV as of 07 May 2026 is ₹10.76.
 The The Wealth Company Multi Asset Allocation Fund Direct Growth is rated Very High risk. Minimum SIP Investment is set to ₹250. Minimum Lumpsum Investment is ₹1,000. Exit load of 1%, if redeemed within 30 Days.
 ;
 Investment Objective
